@@ -5,7 +5,7 @@ public class Swarm_AI_Script : MonoBehaviour {
 
 	public float swarmUpdatesPerSecond = 5;
 	public float timeSpread = 5;
-	public float sightRadius = 10;
+	public float sightRadius = 500;
 	public float sightAngle = 90;
 	public float maxAccelleration = 5;
 
@@ -20,8 +20,9 @@ public class Swarm_AI_Script : MonoBehaviour {
 	public float targetPriority = 5;
 	public int id;
 
-	public GameObject swarmTarget;
-	public GameObject swarmHome;
+	public GameObject swarmTarget;	public GameObject swarmHome;
+
+	public bool isMovingToTarget = false;
 
 	void Awake () {
 		GameObject[] allSwarm = GameObject.FindGameObjectsWithTag ("Swarm");
@@ -85,17 +86,20 @@ public class Swarm_AI_Script : MonoBehaviour {
 			steerToSeperate = Vector3.zero;
 		}
 
-		Debug.ClearDeveloperConsole ();
+//		Debug.ClearDeveloperConsole ();
+		if (isMovingToTarget){
+			if (Vector3.Distance(transform.position, swarmTarget.transform.position) < 10){
+				steerToTarget = Vector3.Normalize (transform.position - swarmTarget.transform.position) * maxAccelleration;
+			} else {
+				steerToTarget = Vector3.Normalize (swarmTarget.transform.position - transform.position) * maxAccelleration;
+			}
 
-		if (Vector3.Distance(transform.position, swarmTarget.transform.position) < 10){
-			steerToTarget = Vector3.Normalize (transform.position - swarmTarget.transform.position) * maxAccelleration;
-		} else {
-			steerToTarget = Vector3.Normalize (swarmTarget.transform.position - transform.position) * maxAccelleration;
+			if (Vector3.Distance(transform.position, swarmTarget.transform.position) > 100) {
+				steerToTarget = Vector3.Normalize (swarmHome.transform.position - transform.position) * maxAccelleration;
+			}
 		}
+		''
 
-		if (Vector3.Distance(transform.position, swarmTarget.transform.position) > 100) {
-			steerToTarget = Vector3.Normalize (swarmHome.transform.position - transform.position) * maxAccelleration;
-		}
 
 
 		steerToCentre = Vector3.Normalize (swarmCenter - transform.position) * maxAccelleration;
