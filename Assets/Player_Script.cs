@@ -101,10 +101,11 @@ public class Player_Script : MonoBehaviour {
 		}
 	}
 
-//	void OnDrawGizmos () {
-//		Gizmos.color = Color.red;
-//		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
-//	}
+	void OnDrawGizmos () {
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
+		Gizmos.DrawWireCube(secondaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
+	}
 
 	private void PlayerMovement () {
 		Vector3 moveX = transform.right * Input.GetAxis("Horizontal") * horizontalSpeed;
@@ -138,19 +139,18 @@ public class Player_Script : MonoBehaviour {
 //		rb.AddTorque(transform.up * torque * turn);
 
 		float mxT = Input.GetAxis ("Mouse X") * torque;
-		float myT = Input.GetAxis ("Mouse Y") * torque;
-//		float mrT = Input.GetAxis ("Roll") * torque;
+		float myT = Input.GetAxis ("Mouse Y") * torque * 1.1f;
+		float mrT = Input.GetAxis ("Roll") * torque;
 
 		rb.AddTorque (0, mxT, 0);
-		rb.AddRelativeTorque (-myT,0,0);
+		rb.AddRelativeTorque (-myT,0,mrT);
 
 		Vector3 properRight = Quaternion.Euler (0, 0, -transform.localEulerAngles.z) * transform.right;
 		Vector3 uprightCorrection = Vector3.Cross (transform.right, properRight);
 		rb.AddRelativeTorque (uprightCorrection * correctionStrength);
 
 	}
-
-
+		
 	private void PlayerInput () {
 
 		if (playerHasControl){

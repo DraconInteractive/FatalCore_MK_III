@@ -5,7 +5,8 @@ public class Swarm_AI_Script : MonoBehaviour {
 
 	public float swarmUpdatesPerSecond = 5;
 	public float timeSpread = 5;
-	public float sightRadius = 500;
+	public float sightRadius = 200;
+	public float playerSightRadius = 500;
 	public float sightAngle = 90;
 	public float maxAccelleration = 5;
 
@@ -94,7 +95,7 @@ public class Swarm_AI_Script : MonoBehaviour {
 				steerToTarget = Vector3.Normalize (swarmTarget.transform.position - transform.position) * maxAccelleration;
 			}
 
-			if (Vector3.Distance(transform.position, swarmTarget.transform.position) > 100) {
+			if (Vector3.Distance(transform.position, swarmTarget.transform.position) > playerSightRadius) {
 				steerToTarget = Vector3.Normalize (swarmHome.transform.position - transform.position) * maxAccelleration;
 			}
 		}
