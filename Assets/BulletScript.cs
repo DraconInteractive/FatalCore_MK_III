@@ -28,7 +28,7 @@ public class BulletScript : MonoBehaviour {
 			Sparkles();
 		} 
 
-		if (col.gameObject.tag == "Swarm"){
+		if (col.gameObject.tag == "Swarm" || col.gameObject.tag == "Enemy"){
 			Kill (col.gameObject);
 		}
 	}

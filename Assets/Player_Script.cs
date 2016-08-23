@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityStandardAssets.ImageEffects;
 using UnityEngine.UI;
 using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
@@ -16,9 +18,15 @@ public class Player_Script : MonoBehaviour {
 	public float boostTimeMax, boostTimeCurrent;
 
 	private bool boostActive;
+//	private MotionBlur mb;
 
 	private bool playerHasControl;
 
+
+	//Player Statistics
+
+	public float health; 
+	public Slider healthSlider;
 	//Weapons
 	public GameObject gatlingBulletTemplate, railBulletTemplate, shotBulletTemplate;
 	public float gatlingBulletForce, railBulletForce, shotBulletForce;
@@ -54,6 +62,10 @@ public class Player_Script : MonoBehaviour {
 		boostSlider.maxValue = boostTimeMax;
 		boostSlider.value = boostTimeMax;
 		boostTimeCurrent = boostTimeMax;
+
+		healthSlider.minValue = 0;
+		healthSlider.maxValue = 100;
+		healthSlider.value = health;
 		primaryTimer = 0;
 		secondaryTimer = 0;
 
@@ -76,10 +88,11 @@ public class Player_Script : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+//		mb = Camera.main.GetComponent<MotionBlur> ();
 		ChoosePrimary (weaponTypes.GATLING);
-		ChooseSecondary (weaponTypes.RAIL);
+		ChooseSecondary (weaponTypes.SHOT);
 		playerHasControl = true;
+		health = 100;
 	}
 	
 	// Update is called once per frame
@@ -142,8 +155,9 @@ public class Player_Script : MonoBehaviour {
 		float myT = Input.GetAxis ("Mouse Y") * torque * 1.1f;
 		float mrT = Input.GetAxis ("Roll") * torque;
 
-		rb.AddTorque (0, mxT, 0);
-		rb.AddRelativeTorque (-myT,0,mrT);
+		rb.AddRelativeTorque (0, mxT, 0);
+		rb.AddRelativeTorque (-myT,0,0);
+		rb.AddRelativeTorque (0, 0, mrT);
 
 		Vector3 properRight = Quaternion.Euler (0, 0, -transform.localEulerAngles.z) * transform.right;
 		Vector3 uprightCorrection = Vector3.Cross (transform.right, properRight);
@@ -270,7 +284,7 @@ public class Player_Script : MonoBehaviour {
 
 	private void FirePrimary(){
 
-		Vector3 targetPosition = Camera.main.ScreenToWorldPoint (new Vector3(Screen.width / 2, Screen.height / 2, 100));
+		Vector3 targetPosition = Camera.main.ScreenToWorldPoint (new Vector3(Screen.width / 2, Screen.height / 2, 75));
 
 		if (primaryTimer <= 0){
 			switch (primaryWeapon)
@@ -386,6 +400,7 @@ public class Player_Script : MonoBehaviour {
 
 	private void BoostUpdate(){
 		if (boostActive){
+//			mb.enabled = true;
 			if (boostTimeCurrent > 0){
 				speedMult = 2;
 				boostTimeCurrent -= Time.deltaTime;
@@ -393,6 +408,7 @@ public class Player_Script : MonoBehaviour {
 				boostActive = false;
 			}
 		} else {
+//			mb.enabled = false;
 			speedMult = 1;
 			boostTimeCurrent += Time.deltaTime * 0.5f;
 		}
@@ -437,5 +453,15 @@ public class Player_Script : MonoBehaviour {
 
 	private void GoHome(){
 		
+	}
+
+	public void DamagePlayer (int damage) {
+		health -= damage;
+
+		if (health <= 0) {
+			SceneManager.LoadScene ("Level 1");
+		}
+
+		healthSlider.value = health;
 	}
 }

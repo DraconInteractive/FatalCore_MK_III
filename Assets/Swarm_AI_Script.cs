@@ -7,6 +7,7 @@ public class Swarm_AI_Script : MonoBehaviour {
 	public float timeSpread = 5;
 	public float sightRadius = 200;
 	public float playerSightRadius = 500;
+	public float fireRadius = 250;
 	public float sightAngle = 90;
 	public float maxAccelleration = 5;
 
@@ -25,6 +26,8 @@ public class Swarm_AI_Script : MonoBehaviour {
 
 	public bool isMovingToTarget = false;
 
+	public GameObject bulletTemplate;
+
 	void Awake () {
 		GameObject[] allSwarm = GameObject.FindGameObjectsWithTag ("Swarm");
 		for (int i = 0; i < allSwarm.Length; i++){
@@ -36,6 +39,12 @@ public class Swarm_AI_Script : MonoBehaviour {
 
 	void Start () {
 		StartCoroutine ("DoSwarm");
+		StartCoroutine ("FireUpdate");
+	}
+
+	void OnDrawGizmos () {
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere (transform.position, playerSightRadius);
 	}
 
 	private IEnumerator DoSwarm () {
@@ -112,8 +121,17 @@ public class Swarm_AI_Script : MonoBehaviour {
 		Vector3 accelToAdd = steerToCentre * sTCPriority + steerToSeperate * sTSPriority + steerToTarget * targetPriority;
 		accelToAdd = Vector3.Normalize (accelToAdd) * maxAccelleration;
 		GetComponent<Rigidbody> ().AddForce (accelToAdd, ForceMode.Acceleration);
+
 	}
 
-
-
+	private IEnumerator FireUpdate () {
+		while (true) {
+			if (Vector3.Distance (swarmTarget.transform.position, transform.position) < fireRadius) {
+				GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
+				bullet.GetComponent<Rigidbody> ().AddForce ((swarmTarget.transform.position - transform.position).normalized * 10, ForceMode.VelocityChange);
+			}
+			yield return new WaitForSeconds (0.5f);
+		}
+	}
+			
 }
