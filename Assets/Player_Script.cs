@@ -188,9 +188,9 @@ public class Player_Script : MonoBehaviour {
 			boostActive = false;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)){
-			UnityEditor.EditorApplication.isPlaying = false;
-		}
+//		if (Input.GetKeyDown(KeyCode.Escape)){
+//			UnityEditor.EditorApplication.isPlaying = false;
+//		}
 //
 		if (Input.GetKeyDown(KeyCode.I)){
 			ToggleInventory ();
