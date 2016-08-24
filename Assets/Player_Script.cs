@@ -296,7 +296,7 @@ public class Player_Script : MonoBehaviour {
 				gatlingBullet.transform.LookAt (bulletTarget);
 				gatlingBullet.GetComponent<Rigidbody> ().AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 
-				primaryHeat += 0.5f;
+				primaryHeat += 1;
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool;
@@ -311,14 +311,14 @@ public class Player_Script : MonoBehaviour {
 				primaryTimer = shotCool;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < 9; i++){
+				for (i = 0; i < 15; i++){
 					GameObject shot = Instantiate (shotBulletTemplate, primaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
 					shot.GetComponent<Rigidbody> ().AddForce (shot.transform.forward * shotBulletForce);
 				}
 
-				primaryHeat += 10;
+				primaryHeat += 30;
 				break;
 			case weaponTypes.SAW:
 				primaryTimer = shotCool;
@@ -350,7 +350,7 @@ public class Player_Script : MonoBehaviour {
 				bullet.transform.LookAt (bulletTarget);
 				bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 
-				secondaryHeat += 0.5f;
+				secondaryHeat += 1;
 				break;
 			case weaponTypes.RAIL:
 				secondaryTimer = railCool;
@@ -365,14 +365,14 @@ public class Player_Script : MonoBehaviour {
 				secondaryTimer = shotCool;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < 9; i++){
+				for (i = 0; i < 15; i++){
 					GameObject shot = Instantiate (shotBulletTemplate, secondaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
 					shot.GetComponent<Rigidbody> ().AddForce (shot.transform.forward * shotBulletForce);
 				}
 
-				secondaryHeat += 10;
+				secondaryHeat += 30;
 				break;
 			case weaponTypes.SAW:
 				secondaryTimer = shotCool;
