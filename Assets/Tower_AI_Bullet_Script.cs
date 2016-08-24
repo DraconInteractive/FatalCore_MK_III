@@ -18,7 +18,7 @@ public class Tower_AI_Bullet_Script : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
-		rb.AddForce ((player.transform.position - transform.position).normalized * 1 * Time.deltaTime, ForceMode.VelocityChange);
+//		rb.AddForce ((player.transform.position - transform.position).normalized * 1 * Time.deltaTime, ForceMode.VelocityChange);
 
 	}
 

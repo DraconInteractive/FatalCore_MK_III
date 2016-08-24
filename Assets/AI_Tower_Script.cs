@@ -26,7 +26,7 @@ public class AI_Tower_Script : MonoBehaviour {
 		while (true) {
 			if (Vector3.Distance(player.transform.position, transform.position) < fireRadius) {
 				GameObject bullet = Instantiate (bulletTemplate, turretPoint.transform.position, Quaternion.identity) as GameObject;
-				bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 10, ForceMode.VelocityChange);
+				bullet.GetComponent<Rigidbody> ().AddForce (/*(player.transform.position - transform.position).normalized * 10*/ transform.forward * 10, ForceMode.VelocityChange);
 			}
 
 			yield return new WaitForSeconds (0.3f);
