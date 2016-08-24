@@ -296,7 +296,7 @@ public class Player_Script : MonoBehaviour {
 				gatlingBullet.transform.LookAt (bulletTarget);
 				gatlingBullet.GetComponent<Rigidbody> ().AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 
-				primaryHeat += 2;
+				primaryHeat += 0.5f;
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool;
@@ -350,7 +350,7 @@ public class Player_Script : MonoBehaviour {
 				bullet.transform.LookAt (bulletTarget);
 				bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 
-				secondaryHeat += 2;
+				secondaryHeat += 0.5f;
 				break;
 			case weaponTypes.RAIL:
 				secondaryTimer = railCool;
