@@ -17,10 +17,10 @@ public class AI_Tower_Script : MonoBehaviour {
 		StartCoroutine ("DoYoThang");
 	}
 
-	void OnDrawGizmos () {
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere (transform.position, fireRadius);
-	}
+//	void OnDrawGizmos () {
+//		Gizmos.color = Color.green;
+//		Gizmos.DrawWireSphere (transform.position, fireRadius);
+//	}
 
 	private IEnumerator DoYoThang () {
 		while (true) {
