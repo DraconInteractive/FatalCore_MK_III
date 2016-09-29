@@ -114,6 +114,11 @@ public class Player_Script : MonoBehaviour {
 		}
 	}
 
+	private void DetectEnemies () {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+	}
+
+
 	void OnDrawGizmos () {
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
@@ -326,8 +331,12 @@ public class Player_Script : MonoBehaviour {
 
 
 				foreach (Collider c in boxCol){
-					if (c.gameObject.tag == "Enemy"){
-						print ("Enemy " + c.gameObject.name + " detected");
+
+					switch (c.gameObject.tag)
+					{
+					case "Enemy":
+						print ("Enemy " + c.gameObject.name + " hit");
+						break;
 					}
 				}
 				break;
