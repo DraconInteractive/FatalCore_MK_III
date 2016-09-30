@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.ImageEffects;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 [RequireComponent(typeof(Rigidbody))]
 public class Player_Script : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class Player_Script : MonoBehaviour {
 	public float boostTimeMax, boostTimeCurrent;
 
 	private bool boostActive;
+
+	public GameObject[] allEnemies;
 //	private MotionBlur mb;
 
 	private bool playerHasControl;
@@ -53,6 +56,9 @@ public class Player_Script : MonoBehaviour {
 	//Home
 	public GameObject homeObj;
 	private bool homeBoundActive;
+
+	//UI
+	public Text enemyCounterText;
 
 	void Awake () {
 		playerObj = this.gameObject;
@@ -93,6 +99,8 @@ public class Player_Script : MonoBehaviour {
 		ChooseSecondary (weaponTypes.SHOT);
 		playerHasControl = true;
 		health = 100;
+		allEnemies = DetectEnemies ();
+		Invoke ("ConstructEnemyCounter", 0.5f);
 	}
 	
 	// Update is called once per frame
@@ -114,10 +122,20 @@ public class Player_Script : MonoBehaviour {
 		}
 	}
 
-	private void DetectEnemies () {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+	private void ConstructEnemyCounter () {
+		enemyCounterText.text = "Enemies:" + "\n" + allEnemies.Length + "/" + allEnemies.Length;
 	}
 
+	private void UpdateEnemyCounter () {
+		
+	}
+
+	private GameObject[] DetectEnemies () {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		GameObject[] otherEnemies = GameObject.FindGameObjectsWithTag ("Swarm");
+		GameObject[] combinedEnemies = enemies.Concat (otherEnemies).ToArray();
+		return combinedEnemies;
+	}
 
 	void OnDrawGizmos () {
 		Gizmos.color = Color.red;
