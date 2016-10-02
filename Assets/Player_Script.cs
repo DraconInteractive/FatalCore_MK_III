@@ -50,7 +50,7 @@ public class Player_Script : MonoBehaviour {
 	//Inventory
 
 	public GameObject inventoryPanel;
-	public Button pGat, pRail, pShot, pSaw, sGat, sRail, sShot, sSaw;
+	public Button pGatButton, pRailButton, pShotButton, pSawButton, sGatButton, sRailButton, sShotButton, sSawButton;
 	private ColorBlock selectedBlock, normalBlock;
 
 	//Home
@@ -59,6 +59,11 @@ public class Player_Script : MonoBehaviour {
 
 	//UI
 	public Text enemyCounterText;
+
+	//weapons stats
+	public int shotCount;
+
+	public GameObject leftGatGO, rightGatGO, leftRailGO, rightRailGO, leftShotGO, rightShotGO, leftSawGO, rightSawGO;
 
 	void Awake () {
 		playerObj = this.gameObject;
@@ -80,15 +85,15 @@ public class Player_Script : MonoBehaviour {
 
 		homeObj = GameObject.FindGameObjectWithTag ("Home");
 
-		pGat.onClick.AddListener (() => ChoosePrimary (weaponTypes.GATLING));
-		pRail.onClick.AddListener (() => ChoosePrimary (weaponTypes.RAIL));
-		pShot.onClick.AddListener (() => ChoosePrimary (weaponTypes.SHOT));
-		pSaw.onClick.AddListener (() => ChoosePrimary (weaponTypes.SAW));
+		pGatButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.GATLING));
+		pRailButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.RAIL));
+		pShotButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.SHOT));
+		pSawButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.SAW));
 
-		sGat.onClick.AddListener (() => ChooseSecondary (weaponTypes.GATLING));
-		sRail.onClick.AddListener (() => ChooseSecondary (weaponTypes.RAIL));
-		sShot.onClick.AddListener (() => ChooseSecondary (weaponTypes.SHOT));
-		sSaw.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
+		sGatButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.GATLING));
+		sRailButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.RAIL));
+		sShotButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SHOT));
+		sSawButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
 
 	}
 
@@ -96,7 +101,7 @@ public class Player_Script : MonoBehaviour {
 	void Start () {
 //		mb = Camera.main.GetComponent<MotionBlur> ();
 		ChoosePrimary (weaponTypes.GATLING);
-		ChooseSecondary (weaponTypes.SHOT);
+		ChooseSecondary (weaponTypes.RAIL);
 		playerHasControl = true;
 		health = 100;
 		allEnemies = DetectEnemies ();
@@ -238,33 +243,57 @@ public class Player_Script : MonoBehaviour {
 		switch (weapon)
 		{
 		case weaponTypes.GATLING:
-			pGat.interactable = false;
+			pGatButton.interactable = false;
 				
 
-			pRail.interactable = true;
-			pShot.interactable = true;
-			pSaw.interactable = true;
+			pRailButton.interactable = true;
+			pShotButton.interactable = true;
+			pSawButton.interactable = true;
+
+			leftGatGO.SetActive (true);
+
+			leftRailGO.SetActive (false);
+			leftShotGO.SetActive (false);
+			leftSawGO.SetActive (false);
 			break;
 		case weaponTypes.RAIL:
-			pRail.interactable = false;
+			pRailButton.interactable = false;
 
-			pGat.interactable = true;
-			pShot.interactable = true;
-			pSaw.interactable = true;
+			pGatButton.interactable = true;
+			pShotButton.interactable = true;
+			pSawButton.interactable = true;
+
+			leftRailGO.SetActive (true);
+
+			leftGatGO.SetActive (false);
+			leftShotGO.SetActive (false);
+			leftSawGO.SetActive (false);
 			break;
 		case weaponTypes.SHOT:
-			pShot.interactable = false;
+			pShotButton.interactable = false;
 
-			pGat.interactable = true;
-			pRail.interactable = true;
-			pSaw.interactable = true;
+			pGatButton.interactable = true;
+			pRailButton.interactable = true;
+			pSawButton.interactable = true;
+
+			leftSawGO.SetActive (true);
+
+			leftGatGO.SetActive (false);
+			leftRailGO.SetActive (false);
+			leftSawGO.SetActive (false);
 			break;
 		case weaponTypes.SAW:
-			pSaw.interactable = false;
+			pSawButton.interactable = false;
 
-			pGat.interactable = true;
-			pRail.interactable = true;
-			pShot.interactable = true;
+			pGatButton.interactable = true;
+			pRailButton.interactable = true;
+			pShotButton.interactable = true;
+
+			leftSawGO.SetActive (true);
+
+			leftGatGO.SetActive (false);
+			leftRailGO.SetActive (false);
+			leftShotGO.SetActive (false);
 			break;
 		}
 	}
@@ -275,32 +304,56 @@ public class Player_Script : MonoBehaviour {
 		switch (weapon)
 		{
 		case weaponTypes.GATLING:
-			sGat.interactable = false;
+			sGatButton.interactable = false;
 
-			sRail.interactable = true;
-			sShot.interactable = true;
-			sSaw.interactable = true;
+			sRailButton.interactable = true;
+			sShotButton.interactable = true;
+			sSawButton.interactable = true;
+
+			rightGatGO.SetActive (true);
+
+			rightRailGO.SetActive (false);
+			rightShotGO.SetActive (false);
+			rightSawGO.SetActive (false);
 			break;
 		case weaponTypes.RAIL:
-			sRail.interactable = false;
+			sRailButton.interactable = false;
 
-			sGat.interactable = true;
-			sShot.interactable = true;
-			sSaw.interactable = true;
+			sGatButton.interactable = true;
+			sShotButton.interactable = true;
+			sSawButton.interactable = true;
+
+			rightRailGO.SetActive (true);
+
+			rightGatGO.SetActive (false);
+			rightShotGO.SetActive (false);
+			rightSawGO.SetActive (false);
 			break;
 		case weaponTypes.SHOT:
-			sShot.interactable = false;
+			sShotButton.interactable = false;
 
-			sGat.interactable = true;
-			sRail.interactable = true;
-			sSaw.interactable = true;
+			sGatButton.interactable = true;
+			sRailButton.interactable = true;
+			sSawButton.interactable = true;
+
+			rightShotGO.SetActive (true);
+
+			rightGatGO.SetActive (false);
+			rightRailGO.SetActive (false);
+			rightSawGO.SetActive (false);
 			break;
 		case weaponTypes.SAW:
-			sSaw.interactable = false;
+			sSawButton.interactable = false;
 
-			sGat.interactable = true;
-			sRail.interactable = true;
-			sShot.interactable = true;
+			sGatButton.interactable = true;
+			sRailButton.interactable = true;
+			sShotButton.interactable = true;
+
+			rightSawGO.SetActive (true);
+
+			rightGatGO.SetActive (false);
+			rightRailGO.SetActive (false);
+			rightShotGO.SetActive (false);
 			break;
 		}
 	}
@@ -334,7 +387,7 @@ public class Player_Script : MonoBehaviour {
 				primaryTimer = shotCool;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < 15; i++){
+				for (i = 0; i < shotCount; i++){
 					GameObject shot = Instantiate (shotBulletTemplate, primaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
@@ -392,7 +445,7 @@ public class Player_Script : MonoBehaviour {
 				secondaryTimer = shotCool;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < 15; i++){
+				for (i = 0; i < shotCount; i++){
 					GameObject shot = Instantiate (shotBulletTemplate, secondaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
@@ -429,7 +482,7 @@ public class Player_Script : MonoBehaviour {
 		if (boostActive){
 //			mb.enabled = true;
 			if (boostTimeCurrent > 0){
-				speedMult = 2;
+				speedMult = 2.5f;
 				boostTimeCurrent -= Time.deltaTime;
 			} else {
 				boostActive = false;

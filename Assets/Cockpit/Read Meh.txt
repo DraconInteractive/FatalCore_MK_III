@@ -1,0 +1,1 @@
+I have made the guns anf cockpit in the same fbx just so that you dont have to try and align the guns yourself. You will have to split them up as im going to think unity wont group it? si iv added a Need help screeny for your sanity.

@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: 03794ea8416bb7243b49e3dff47067dc
+timeCreated: 1475231556
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cockpit
+    100002: //RootNode
+    100004: Glass
+    100006: Left Barrel 01
+    100008: Left Barrel 02
+    100010: Left Gatling Barrel
+    100012: Left Gatling Base
+    100014: Left Rail
+    100016: left Shotgun
+    100018: Railgun body Left
+    100020: Railgun body Right
+    100022: Right Barrel 01
+    100024: Right Barrel 02
+    100026: Right Gatling Barrel
+    100028: Right Gatling Base
+    100030: Right Rail
+    100032: Right Shotgun
+    400000: Cockpit
+    400002: //RootNode
+    400004: Glass
+    400006: Left Barrel 01
+    400008: Left Barrel 02
+    400010: Left Gatling Barrel
+    400012: Left Gatling Base
+    400014: Left Rail
+    400016: left Shotgun
+    400018: Railgun body Left
+    400020: Railgun body Right
+    400022: Right Barrel 01
+    400024: Right Barrel 02
+    400026: Right Gatling Barrel
+    400028: Right Gatling Base
+    400030: Right Rail
+    400032: Right Shotgun
+    2300000: Cockpit
+    2300002: Glass
+    2300004: Left Barrel 01
+    2300006: Left Barrel 02
+    2300008: Left Gatling Barrel
+    2300010: Left Gatling Base
+    2300012: Left Rail
+    2300014: left Shotgun
+    2300016: Railgun body Left
+    2300018: Railgun body Right
+    2300020: Right Barrel 01
+    2300022: Right Barrel 02
+    2300024: Right Gatling Barrel
+    2300026: Right Gatling Base
+    2300028: Right Rail
+    2300030: Right Shotgun
+    3300000: Cockpit
+    3300002: Glass
+    3300004: Left Barrel 01
+    3300006: Left Barrel 02
+    3300008: Left Gatling Barrel
+    3300010: Left Gatling Base
+    3300012: Left Rail
+    3300014: left Shotgun
+    3300016: Railgun body Left
+    3300018: Railgun body Right
+    3300020: Right Barrel 01
+    3300022: Right Barrel 02
+    3300024: Right Gatling Barrel
+    3300026: Right Gatling Base
+    3300028: Right Rail
+    3300030: Right Shotgun
+    4300000: Glass
+    4300002: Cockpit
+    4300004: Left Gatling Barrel
+    4300006: Left Gatling Base
+    4300008: Right Gatling Barrel
+    4300010: Right Gatling Base
+    4300012: left Shotgun
+    4300014: Left Barrel 01
+    4300016: Left Barrel 02
+    4300018: Right Barrel 02
+    4300020: Right Barrel 01
+    4300022: Right Shotgun
+    4300024: Railgun body Left
+    4300026: Left Rail
+    4300028: Railgun body Right
+    4300030: Right Rail
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.04
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
