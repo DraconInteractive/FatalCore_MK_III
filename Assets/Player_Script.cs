@@ -7,7 +7,7 @@ using System.Linq;
 [RequireComponent(typeof(Rigidbody))]
 public class Player_Script : MonoBehaviour {
 
-	public static GameObject playerObj;
+	public static GameObject playerObj, passCube;
 	Rigidbody rb;
 	public float forwardSpeed, horizontalSpeed, verticalSpeed, sidePulseSpeed;
 	public float camRotationSpeed, torque, correctionStrength;
@@ -21,6 +21,7 @@ public class Player_Script : MonoBehaviour {
 	private bool boostActive;
 
 	public GameObject[] allEnemies;
+	private int totalEnemies;
 //	private MotionBlur mb;
 
 	private bool playerHasControl;
@@ -84,6 +85,7 @@ public class Player_Script : MonoBehaviour {
 		Cursor.visible = false;
 
 		homeObj = GameObject.FindGameObjectWithTag ("Home");
+		passCube = GameObject.FindGameObjectWithTag ("Pass Cube");
 
 		pGatButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.GATLING));
 		pRailButton.onClick.AddListener (() => ChoosePrimary (weaponTypes.RAIL));
@@ -128,11 +130,23 @@ public class Player_Script : MonoBehaviour {
 	}
 
 	private void ConstructEnemyCounter () {
-		enemyCounterText.text = "Enemies:" + "\n" + allEnemies.Length + "/" + allEnemies.Length;
+		totalEnemies = allEnemies.Length;
+		enemyCounterText.text = "Enemies:" + "\n" + totalEnemies + "/" + totalEnemies;
 	}
 
-	private void UpdateEnemyCounter () {
-		
+	public void UpdateEnemyCounter () {
+		enemyCounterText.text = "Enemies: " + "\n" + DetectEnemies ().Length + "/" + totalEnemies;
+		if (DetectEnemies ().Length <= 0) {
+			passCube.SetActive (false);
+		} else if (DetectEnemies ().Length <= 10 && DetectEnemies ().Length >= 0) {
+			LightEmUp ();
+		}
+	}
+
+	private void LightEmUp () {
+		for (int i = 0; i < DetectEnemies ().Length; i++) {
+			
+		}
 	}
 
 	private GameObject[] DetectEnemies () {
@@ -203,13 +217,13 @@ public class Player_Script : MonoBehaviour {
 
 			if (Input.GetButton("Fire1")){
 				FirePrimary ();
+				UpdateEnemyCounter ();
 			}
 
 			if (Input.GetButton("Fire2")){
 				FireSecondary ();
+				UpdateEnemyCounter ();
 			}
-
-
 		}
 
 		if (Input.GetButtonUp("Boost")){

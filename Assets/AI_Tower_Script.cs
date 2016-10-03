@@ -8,6 +8,8 @@ public class AI_Tower_Script : MonoBehaviour {
 
 	public GameObject bulletTemplate;
 
+	private bool cooling;
+	private float coolingTimer;
 	public float fireRadius;
 	// Use this for initialization
 	void Start () {
@@ -17,10 +19,13 @@ public class AI_Tower_Script : MonoBehaviour {
 		StartCoroutine ("DoYoThang");
 	}
 
-//	void OnDrawGizmos () {
-//		Gizmos.color = Color.green;
-//		Gizmos.DrawWireSphere (transform.position, fireRadius);
-//	}
+	void Update () {
+		
+	}
+
+	private void Fire () {
+		
+	}
 
 	private IEnumerator DoYoThang () {
 		while (true) {
