@@ -128,4 +128,8 @@ public class Swarm_Script_02 : MonoBehaviour {
 			yield return new WaitForSeconds (0.5f);
 		}
 	}
+
+	public void DamageAI (int damage) {
+		Destroy (this.gameObject);
+	}
 }

@@ -36,5 +36,9 @@ public class AI_Tower_Script : MonoBehaviour {
 			cooling = false;
 		}
 	}
+
+	public void DamageAI (int damage) {
+		Destroy (this.gameObject);
+	}
 		
 }
