@@ -29,8 +29,8 @@ public class Player_Script : MonoBehaviour {
 
 	//Player Statistics
 
-	public float health; 
-	public Slider healthSlider;
+	public float health, shield; 
+	public Slider healthSlider, shieldSlider;
 	//Weapons
 	public GameObject gatlingBulletTemplate, railBulletTemplate, shotBulletTemplate;
 	public float gatlingBulletForce, railBulletForce, shotBulletForce;
@@ -78,6 +78,9 @@ public class Player_Script : MonoBehaviour {
 		healthSlider.minValue = 0;
 		healthSlider.maxValue = 100;
 		healthSlider.value = health;
+		shieldSlider.minValue = 0;
+		shieldSlider.maxValue = 100;
+		shieldSlider.value = shield;
 		primaryTimer = 0;
 		secondaryTimer = 0;
 
@@ -106,6 +109,7 @@ public class Player_Script : MonoBehaviour {
 		ChooseSecondary (weaponTypes.RAIL);
 		playerHasControl = true;
 		health = 100;
+		shield = 100;
 		allEnemies = DetectEnemies ();
 		Invoke ("ConstructEnemyCounter", 0.5f);
 	}
@@ -148,6 +152,7 @@ public class Player_Script : MonoBehaviour {
 			
 		}
 	}
+
 
 	private GameObject[] DetectEnemies () {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
@@ -485,10 +490,7 @@ public class Player_Script : MonoBehaviour {
 
 	private void UpdateUI(){
 		boostSlider.value = boostTimeCurrent;
-
-		primaryGunText.text = primaryWeapon.ToString ();
 		primaryHeatSlider.value = primaryHeat;
-		secondaryGunText.text = secondaryWeapon.ToString ();
 		secondaryHeatSlider.value = secondaryHeat;
 	}
 
@@ -550,12 +552,23 @@ public class Player_Script : MonoBehaviour {
 	}
 
 	public void DamagePlayer (int damage) {
-		health -= damage;
 
+		if (shield > 0) {
+			shield -= damage;
+		} else {
+			health -= damage;
+		}
+
+		if (shield < 0) {
+			health -= (0 - shield);
+			shield = 0;
+		}
+			
 		if (health <= 0) {
-			SceneManager.LoadScene ("Level 1");
+			SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		}
 
 		healthSlider.value = health;
+		shieldSlider.value = shield;
 	}
 }

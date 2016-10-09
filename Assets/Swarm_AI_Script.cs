@@ -42,10 +42,10 @@ public class Swarm_AI_Script : MonoBehaviour {
 		StartCoroutine ("FireUpdate");
 	}
 
-	void OnDrawGizmos () {
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere (transform.position, playerSightRadius);
-	}
+//	void OnDrawGizmos () {
+//		Gizmos.color = Color.red;
+//		Gizmos.DrawWireSphere (transform.position, playerSightRadius);
+//	}
 
 	private IEnumerator DoSwarm () {
 		while (true) {
