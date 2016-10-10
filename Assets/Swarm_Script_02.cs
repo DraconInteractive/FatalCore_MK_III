@@ -29,17 +29,21 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	Rigidbody rb;
 
+	public bool drawRadii;
+
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
 
 	void OnDrawGizmos () {
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere (transform.position, swarmSightRadius);
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere (transform.position, playerSightRadius);
-		Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere (transform.position, fireRadius);
+		if (drawRadii){
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere (transform.position, swarmSightRadius);
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireSphere (transform.position, playerSightRadius);
+			Gizmos.color = Color.blue;
+			Gizmos.DrawWireSphere (transform.position, fireRadius);
+		}
 	}
 	// Use this for initialization
 	void Start () {
