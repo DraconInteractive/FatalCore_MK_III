@@ -70,12 +70,14 @@ public class Swarm_Script_02 : MonoBehaviour {
 		Vector3 closestLocation = transform.position;
 
 		for (int i = 0; i < swarmMembers.Count; i++) {
-			swarmDirection += swarmMembers [i].transform.forward;
-			swarmCenter += swarmMembers [i].transform.position;
-			float testDistance = Vector3.Distance (transform.position, swarmMembers [i].transform.position);
-			if (testDistance < shortestDistance) {
-				shortestDistance = testDistance;
-				closestLocation = swarmMembers [i].transform.position;
+			if (swarmMembers[i] != null) {
+				swarmDirection += swarmMembers [i].transform.forward;
+				swarmCenter += swarmMembers [i].transform.position;
+				float testDistance = Vector3.Distance (transform.position, swarmMembers [i].transform.position);
+				if (testDistance < shortestDistance) {
+					shortestDistance = testDistance;
+					closestLocation = swarmMembers [i].transform.position;
+				}
 			}
 		}
 
@@ -134,6 +136,7 @@ public class Swarm_Script_02 : MonoBehaviour {
 	}
 
 	public void DamageAI (int damage) {
+		player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
 		Destroy (this.gameObject);
 	}
 }

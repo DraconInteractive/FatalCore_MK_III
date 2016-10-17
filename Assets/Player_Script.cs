@@ -225,12 +225,10 @@ public class Player_Script : MonoBehaviour {
 
 			if (Input.GetButton("Fire1")){
 				FirePrimary ();
-				UpdateEnemyCounter ();
 			}
 
 			if (Input.GetButton("Fire2")){
 				FireSecondary ();
-				UpdateEnemyCounter ();
 			}
 		}
 
