@@ -122,6 +122,9 @@ public class Swarm_Script_02 : MonoBehaviour {
 		Vector3 accelToAdd = centreForce * centerPriority + sepForce * seperatePriority + targetForce * targetPriority;
 		accelToAdd = Vector3.Normalize (accelToAdd) * maxAccelleration;
 		rb.AddForce (accelToAdd, ForceMode.Acceleration);
+
+		Quaternion desRot = Quaternion.LookRotation ((player.transform.position - transform.position), Vector3.up);
+		transform.rotation = Quaternion.Lerp (transform.rotation, desRot, 0.15f);
 	}
 
 	private IEnumerator FireUpdate () {
