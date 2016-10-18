@@ -30,8 +30,8 @@ public class Rail_Bullet_Script : MonoBehaviour {
 			Sparkles();
 		} 
 
-		if (col.gameObject.tag == "Swarm" || col.gameObject.tag == "Enemy"){
-			Kill (col.gameObject);
+		if (col.gameObject.tag == "Swarm" || col.gameObject.tag == "Tower" || col.gameObject.tag == "Elite"){
+			ApplyDamage (col.gameObject);
 		}
 	}
 
@@ -45,7 +45,17 @@ public class Rail_Bullet_Script : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	private void Kill(GameObject g){
-		Destroy (g);
+	private void ApplyDamage (GameObject g){
+		switch (g.tag) {
+		case "Swarm":
+			g.GetComponent<Swarm_Script_02> ().DamageAI (damage);
+			break;
+		case "Elite":
+			g.GetComponent<AI_Elite_01_Script> ().DamageAI (damage);
+			break;
+		case "Tower":
+			g.GetComponent<AI_Tower_Script> ().DamageAI (damage);
+			break;
+		}
 	}
 }

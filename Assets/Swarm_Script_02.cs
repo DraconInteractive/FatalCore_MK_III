@@ -31,6 +31,9 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	public bool drawRadii;
 
+	float currentHealth;
+	public float maxHealth;
+
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
@@ -48,7 +51,9 @@ public class Swarm_Script_02 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		player = Player_Script.playerObj;
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = Player_Script.playerObj;
+
+		currentHealth = maxHealth;
 
 		swarmMembers.Remove (this.gameObject);
 
@@ -136,7 +141,14 @@ public class Swarm_Script_02 : MonoBehaviour {
 	}
 
 	public void DamageAI (int damage) {
-		player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
-		Destroy (this.gameObject);
+
+		currentHealth -= damage;
+
+		if (currentHealth < 0) {
+			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
+			Destroy (this.gameObject);
+		}
+
+
 	}
 }

@@ -11,10 +11,14 @@ public class AI_Tower_Script : MonoBehaviour {
 	private bool cooling;
 	private float coolingTimer;
 	public float fireRadius, fireRate;
+
+	float currentHealth;
+	public float maxHealth;
 	// Use this for initialization
 	void Start () {
 		turretPoint = transform.GetChild (0).gameObject;
 		player = Player_Script.playerObj;
+		currentHealth = maxHealth;
 	}
 
 	void Update () {
@@ -38,7 +42,12 @@ public class AI_Tower_Script : MonoBehaviour {
 	}
 
 	public void DamageAI (int damage) {
-		Destroy (this.gameObject);
+		currentHealth -= damage;
+
+		if (currentHealth <= 0) {
+			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
+			Destroy (this.gameObject);
+		}
 	}
 		
 }

@@ -115,6 +115,7 @@ public class Player_Script : MonoBehaviour {
 		shield = 100;
 		allEnemies = DetectEnemies ();
 		Invoke ("ConstructEnemyCounter", 0.5f);
+		DamagePlayer (0);
 	}
 	
 	// Update is called once per frame
@@ -158,9 +159,11 @@ public class Player_Script : MonoBehaviour {
 
 
 	private GameObject[] DetectEnemies () {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
-		GameObject[] otherEnemies = GameObject.FindGameObjectsWithTag ("Swarm");
-		GameObject[] combinedEnemies = enemies.Concat (otherEnemies).ToArray();
+		GameObject [] towers = GameObject.FindGameObjectsWithTag ("Tower");
+		GameObject [] swarms = GameObject.FindGameObjectsWithTag ("Swarm");
+		GameObject[] elites = GameObject.FindGameObjectsWithTag ("Elite");
+		GameObject[] towersAndSwarms = towers.Concat (swarms).ToArray();
+		GameObject[] combinedEnemies = towersAndSwarms.Concat (elites).ToArray ();
 		return combinedEnemies;
 	}
 
