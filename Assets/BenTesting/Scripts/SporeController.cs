@@ -4,6 +4,7 @@ using System.Collections;
 public class SporeController : MonoBehaviour 
 {
 	public ParticleSystem spores;
+	public GameObject target;
 	float timer;
 
 	// Use this for initialization
@@ -19,3 +20,5 @@ public class SporeController : MonoBehaviour
 
 	}
 }
+
+//Xblivior

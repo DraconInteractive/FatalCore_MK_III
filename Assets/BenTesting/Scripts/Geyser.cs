@@ -3,10 +3,17 @@ using System.Collections;
 
 public class Geyser : MonoBehaviour 
 {
-	public Transform geyserHight;
+	//geyser height 
+	public Transform geyserHeight;
+
+	//set damage
 	public int damage;
+
+	//timers
 	float timer = 2f;
 	float lifeTimer = 10f;
+
+	//player script reference
 	Player_Script ps;
 
 	void Start () 
@@ -26,7 +33,7 @@ public class Geyser : MonoBehaviour
 		if (timer <= 0f)
 		{
 			//move geyser to geyser hight
-			transform.position = Vector3.Lerp (transform.position, geyserHight.position, 1 * Time.deltaTime);
+			transform.position = Vector3.Lerp (transform.position, geyserHeight.position, 1 * Time.deltaTime);
 		}
 
 		//if life timer <= 0
@@ -47,3 +54,5 @@ public class Geyser : MonoBehaviour
 		}
 	}
 }
+
+//Xblivior
