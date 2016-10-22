@@ -16,6 +16,7 @@ public class SporeController : MonoBehaviour
 	{
 		//set player object
 		//player = Player_Script.playerObj;
+
 	}
 	
 	// Update is called once per frame
@@ -38,10 +39,10 @@ public class SporeController : MonoBehaviour
 			}
 		}
 
-		if (target != null)
-		{
-			transform.LookAt(target.transform);
-		}
+//		if (target != null)
+//		{
+//			transform.LookAt(target.transform);
+//		}
 
 	}
 }
