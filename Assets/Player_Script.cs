@@ -124,6 +124,7 @@ public class Player_Script : MonoBehaviour {
 		UpdateUI();
 		BoostUpdate();
 		HeatUpdate ();
+
 	}
 
 	void FixedUpdate () {
@@ -135,6 +136,8 @@ public class Player_Script : MonoBehaviour {
 		if (homeBoundActive){
 			GoHome ();
 		}
+
+
 	}
 
 	private void ConstructEnemyCounter () {
