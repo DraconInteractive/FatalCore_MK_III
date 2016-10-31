@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: 3f635817547c1004ba8892d9a75695c2
+timeCreated: 1477894480
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Delete Me Fam
+    100002: //RootNode
+    100004: Drill_Left_00
+    100006: Drill_Left_01
+    100008: Drill_Left_02
+    100010: Drill_Left_03
+    100012: Drill_Left_04
+    100014: Drill_Left_05
+    100016: Drill_Left_06
+    100018: Drill_Left_07
+    100020: Drill_Left_08
+    100022: Drill_Left_09
+    100024: Drill_Left_10
+    100026: Drill_Left_11
+    100028: Drill_Left_12
+    100030: Drill_Right_00
+    100032: Drill_Right_01
+    100034: Drill_Right_02
+    100036: Drill_Right_03
+    100038: Drill_Right_04
+    100040: Drill_Right_05
+    100042: Drill_Right_06
+    100044: Drill_Right_07
+    100046: Drill_Right_08
+    100048: Drill_Right_09
+    100050: Drill_Right_10
+    100052: Drill_Right_11
+    100054: Drill_Right_12
+    400000: Delete Me Fam
+    400002: //RootNode
+    400004: Drill_Left_00
+    400006: Drill_Left_01
+    400008: Drill_Left_02
+    400010: Drill_Left_03
+    400012: Drill_Left_04
+    400014: Drill_Left_05
+    400016: Drill_Left_06
+    400018: Drill_Left_07
+    400020: Drill_Left_08
+    400022: Drill_Left_09
+    400024: Drill_Left_10
+    400026: Drill_Left_11
+    400028: Drill_Left_12
+    400030: Drill_Right_00
+    400032: Drill_Right_01
+    400034: Drill_Right_02
+    400036: Drill_Right_03
+    400038: Drill_Right_04
+    400040: Drill_Right_05
+    400042: Drill_Right_06
+    400044: Drill_Right_07
+    400046: Drill_Right_08
+    400048: Drill_Right_09
+    400050: Drill_Right_10
+    400052: Drill_Right_11
+    400054: Drill_Right_12
+    2300000: Delete Me Fam
+    2300002: Drill_Left_00
+    2300004: Drill_Left_01
+    2300006: Drill_Left_02
+    2300008: Drill_Left_03
+    2300010: Drill_Left_04
+    2300012: Drill_Left_05
+    2300014: Drill_Left_06
+    2300016: Drill_Left_07
+    2300018: Drill_Left_08
+    2300020: Drill_Left_09
+    2300022: Drill_Left_10
+    2300024: Drill_Left_11
+    2300026: Drill_Left_12
+    2300028: Drill_Right_00
+    2300030: Drill_Right_01
+    2300032: Drill_Right_02
+    2300034: Drill_Right_03
+    2300036: Drill_Right_04
+    2300038: Drill_Right_05
+    2300040: Drill_Right_06
+    2300042: Drill_Right_07
+    2300044: Drill_Right_08
+    2300046: Drill_Right_09
+    2300048: Drill_Right_10
+    2300050: Drill_Right_11
+    2300052: Drill_Right_12
+    3300000: Delete Me Fam
+    3300002: Drill_Left_00
+    3300004: Drill_Left_01
+    3300006: Drill_Left_02
+    3300008: Drill_Left_03
+    3300010: Drill_Left_04
+    3300012: Drill_Left_05
+    3300014: Drill_Left_06
+    3300016: Drill_Left_07
+    3300018: Drill_Left_08
+    3300020: Drill_Left_09
+    3300022: Drill_Left_10
+    3300024: Drill_Left_11
+    3300026: Drill_Left_12
+    3300028: Drill_Right_00
+    3300030: Drill_Right_01
+    3300032: Drill_Right_02
+    3300034: Drill_Right_03
+    3300036: Drill_Right_04
+    3300038: Drill_Right_05
+    3300040: Drill_Right_06
+    3300042: Drill_Right_07
+    3300044: Drill_Right_08
+    3300046: Drill_Right_09
+    3300048: Drill_Right_10
+    3300050: Drill_Right_11
+    3300052: Drill_Right_12
+    4300000: Delete Me Fam
+    4300002: Drill_Right_12
+    4300004: Drill_Right_11
+    4300006: Drill_Right_10
+    4300008: Drill_Right_09
+    4300010: Drill_Right_08
+    4300012: Drill_Right_07
+    4300014: Drill_Right_06
+    4300016: Drill_Right_05
+    4300018: Drill_Right_04
+    4300020: Drill_Right_03
+    4300022: Drill_Right_02
+    4300024: Drill_Right_01
+    4300026: Drill_Right_00
+    4300028: Drill_Left_12
+    4300030: Drill_Left_11
+    4300032: Drill_Left_10
+    4300034: Drill_Left_09
+    4300036: Drill_Left_08
+    4300038: Drill_Left_07
+    4300040: Drill_Left_06
+    4300042: Drill_Left_05
+    4300044: Drill_Left_04
+    4300046: Drill_Left_03
+    4300048: Drill_Left_02
+    4300050: Drill_Left_01
+    4300052: Drill_Left_00
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.04
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

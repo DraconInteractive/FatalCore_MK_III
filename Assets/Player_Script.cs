@@ -65,7 +65,7 @@ public class Player_Script : MonoBehaviour {
 	//weapons stats
 	public int shotCount;
 
-	public GameObject leftGatGO, rightGatGO, leftRailGO, rightRailGO, leftShotGO, rightShotGO, leftSawGO, rightSawGO;
+	public GameObject[] leftGatGO, rightGatGO, leftRailGO, rightRailGO, leftShotGO, rightShotGO, leftSawGO, rightSawGO;
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
@@ -276,11 +276,20 @@ public class Player_Script : MonoBehaviour {
 			pShotButton.interactable = true;
 			pSawButton.interactable = true;
 
-			leftGatGO.SetActive (true);
+			foreach (GameObject g in leftGatGO) {
+				g.SetActive (true);
+			}
 
-			leftRailGO.SetActive (false);
-			leftShotGO.SetActive (false);
-			leftSawGO.SetActive (false);
+			foreach (GameObject g in leftRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftSawGO) {
+				g.SetActive (false);
+			}
+
 			break;
 		case weaponTypes.RAIL:
 			pRailButton.interactable = false;
@@ -289,11 +298,20 @@ public class Player_Script : MonoBehaviour {
 			pShotButton.interactable = true;
 			pSawButton.interactable = true;
 
-			leftRailGO.SetActive (true);
 
-			leftGatGO.SetActive (false);
-			leftShotGO.SetActive (false);
-			leftSawGO.SetActive (false);
+			foreach (GameObject g in leftRailGO) {
+				g.SetActive (true);
+			}
+
+			foreach (GameObject g in leftGatGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftSawGO) {
+				g.SetActive (false);
+			}
 			break;
 		case weaponTypes.SHOT:
 			pShotButton.interactable = false;
@@ -302,11 +320,19 @@ public class Player_Script : MonoBehaviour {
 			pRailButton.interactable = true;
 			pSawButton.interactable = true;
 
-			leftSawGO.SetActive (true);
+			foreach (GameObject g in leftShotGO) {
+				g.SetActive (true);
+			}
 
-			leftGatGO.SetActive (false);
-			leftRailGO.SetActive (false);
-			leftSawGO.SetActive (false);
+			foreach (GameObject g in leftRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftGatGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftSawGO) {
+				g.SetActive (false);
+			}
 			break;
 		case weaponTypes.SAW:
 			pSawButton.interactable = false;
@@ -315,11 +341,19 @@ public class Player_Script : MonoBehaviour {
 			pRailButton.interactable = true;
 			pShotButton.interactable = true;
 
-			leftSawGO.SetActive (true);
+			foreach (GameObject g in leftSawGO) {
+				g.SetActive (true);
+			}
 
-			leftGatGO.SetActive (false);
-			leftRailGO.SetActive (false);
-			leftShotGO.SetActive (false);
+			foreach (GameObject g in leftRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in leftGatGO) {
+				g.SetActive (false);
+			}
 			break;
 		}
 	}
@@ -336,11 +370,21 @@ public class Player_Script : MonoBehaviour {
 			sShotButton.interactable = true;
 			sSawButton.interactable = true;
 
-			rightGatGO.SetActive (true);
 
-			rightRailGO.SetActive (false);
-			rightShotGO.SetActive (false);
-			rightSawGO.SetActive (false);
+			foreach (GameObject g in rightGatGO) {
+				g.SetActive (true);
+			}
+
+			foreach (GameObject g in rightRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightSawGO) {
+				g.SetActive (false);
+			}
+
 			break;
 		case weaponTypes.RAIL:
 			sRailButton.interactable = false;
@@ -349,11 +393,21 @@ public class Player_Script : MonoBehaviour {
 			sShotButton.interactable = true;
 			sSawButton.interactable = true;
 
-			rightRailGO.SetActive (true);
 
-			rightGatGO.SetActive (false);
-			rightShotGO.SetActive (false);
-			rightSawGO.SetActive (false);
+			foreach (GameObject g in rightRailGO) {
+				g.SetActive (true);
+			}
+
+			foreach (GameObject g in rightGatGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightSawGO) {
+				g.SetActive (false);
+			}
+
 			break;
 		case weaponTypes.SHOT:
 			sShotButton.interactable = false;
@@ -362,11 +416,21 @@ public class Player_Script : MonoBehaviour {
 			sRailButton.interactable = true;
 			sSawButton.interactable = true;
 
-			rightShotGO.SetActive (true);
 
-			rightGatGO.SetActive (false);
-			rightRailGO.SetActive (false);
-			rightSawGO.SetActive (false);
+			foreach (GameObject g in rightShotGO) {
+				g.SetActive (true);
+			}
+
+			foreach (GameObject g in rightRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightGatGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightSawGO) {
+				g.SetActive (false);
+			}
+
 			break;
 		case weaponTypes.SAW:
 			sSawButton.interactable = false;
@@ -375,11 +439,21 @@ public class Player_Script : MonoBehaviour {
 			sRailButton.interactable = true;
 			sShotButton.interactable = true;
 
-			rightSawGO.SetActive (true);
 
-			rightGatGO.SetActive (false);
-			rightRailGO.SetActive (false);
-			rightShotGO.SetActive (false);
+			foreach (GameObject g in rightSawGO) {
+				g.SetActive (true);
+			}
+
+			foreach (GameObject g in rightRailGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightShotGO) {
+				g.SetActive (false);
+			}
+			foreach (GameObject g in rightGatGO) {
+				g.SetActive (false);
+			}
+
 			break;
 		}
 	}
