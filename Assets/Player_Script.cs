@@ -66,6 +66,7 @@ public class Player_Script : MonoBehaviour {
 	public int shotCount;
 
 	public GameObject[] leftGatGO, rightGatGO, leftRailGO, rightRailGO, leftShotGO, rightShotGO, leftSawGO, rightSawGO;
+	public Animation gatAnim, railAnim, shotAnim, sawAnim;
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
@@ -473,6 +474,7 @@ public class Player_Script : MonoBehaviour {
 				gatlingBullet.GetComponent<Rigidbody> ().AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
 				primaryHeat += 1;
+				gatAnim.Play ();
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool - railMod.fireRateMod;
@@ -482,40 +484,43 @@ public class Player_Script : MonoBehaviour {
 				railBullet.GetComponent<Rigidbody> ().AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
 				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
 				primaryHeat += 15;
+				railAnim.Play ();
 				break;
 			case weaponTypes.SHOT:
 				primaryTimer = shotCool - shotMod.fireRateMod;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < shotCount; i++){
+				for (i = 0; i < shotCount; i++) {
 					GameObject shot = Instantiate (shotBulletTemplate, primaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
-					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
+					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range (targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
 					shot.GetComponent<Rigidbody> ().AddForce (shot.transform.forward * shotBulletForce);
 					shot.GetComponent<BulletScript> ().damage += (int)shotMod.damageMod;
 				}
 
 				primaryHeat += 30;
+				shotAnim.Play ();
 				break;
 			case weaponTypes.SAW:
 				primaryTimer = sawCool - sawMod.fireRateMod;
-				Collider[] boxCol = Physics.OverlapBox (primaryPoint.transform.position + (transform.forward * 2), new Vector3(sawReach / 2, sawReach / 2, sawReach / 2));
+				Collider[] boxCol = Physics.OverlapBox (primaryPoint.transform.position + (transform.forward * 2), new Vector3 (sawReach / 2, sawReach / 2, sawReach / 2));
 
 
-				foreach (Collider c in boxCol){
+				foreach (Collider c in boxCol) {
 
-					switch (c.gameObject.tag)
-					{
+					switch (c.gameObject.tag) {
 					case "Enemy":
-						if (c.gameObject.GetComponent<Swarm_Script_02>()) {
+						if (c.gameObject.GetComponent<Swarm_Script_02> ()) {
 							c.gameObject.GetComponent<Swarm_Script_02> ().DamageAI (sawDamage + (int)sawMod.damageMod);
 						}
-						if (c.gameObject.GetComponent<AI_Tower_Script>()) {
+						if (c.gameObject.GetComponent<AI_Tower_Script> ()) {
 							c.gameObject.GetComponent<AI_Tower_Script> ().DamageAI (sawDamage + (int)sawMod.damageMod);
 						}
 						break;
 					}
 				}
+
+				sawAnim.Play ();
 				break;
 			}
 
