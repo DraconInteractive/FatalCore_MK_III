@@ -66,7 +66,7 @@ public class Player_Script : MonoBehaviour {
 	public int shotCount;
 
 	public GameObject[] leftGatGO, rightGatGO, leftRailGO, rightRailGO, leftShotGO, rightShotGO, leftSawGO, rightSawGO;
-	public Animation gatAnim, railAnim, shotAnim, sawAnim;
+	public Animator gatAnim, railAnim, shotAnim, sawAnim;
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
@@ -229,13 +229,20 @@ public class Player_Script : MonoBehaviour {
 			if (Input.GetButtonDown("Boost")){
 				boostActive = true;
 			}
-
+				
 			if (Input.GetButton("Fire1")){
 				FirePrimary ();
+			} else {
+				gatAnim.SetBool ("firing", false);
+				railAnim.SetBool ("firing", false);
+				shotAnim.SetBool ("firing", false);
+				sawAnim.SetBool ("firing", false);
 			}
 
 			if (Input.GetButton("Fire2")){
 				FireSecondary ();
+			} else {
+				
 			}
 		}
 
@@ -474,7 +481,7 @@ public class Player_Script : MonoBehaviour {
 				gatlingBullet.GetComponent<Rigidbody> ().AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
 				primaryHeat += 1;
-				gatAnim.Play ();
+				gatAnim.SetBool ("firing", true);
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool - railMod.fireRateMod;
@@ -484,7 +491,8 @@ public class Player_Script : MonoBehaviour {
 				railBullet.GetComponent<Rigidbody> ().AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
 				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
 				primaryHeat += 15;
-				railAnim.Play ();
+				railAnim.SetBool ("firing", true);
+
 				break;
 			case weaponTypes.SHOT:
 				primaryTimer = shotCool - shotMod.fireRateMod;
@@ -499,7 +507,7 @@ public class Player_Script : MonoBehaviour {
 				}
 
 				primaryHeat += 30;
-				shotAnim.Play ();
+				shotAnim.SetBool ("firing", true);
 				break;
 			case weaponTypes.SAW:
 				primaryTimer = sawCool - sawMod.fireRateMod;
@@ -520,7 +528,7 @@ public class Player_Script : MonoBehaviour {
 					}
 				}
 
-				sawAnim.Play ();
+				sawAnim.SetBool ("firing", true);
 				break;
 			}
 

@@ -142,7 +142,8 @@ ModelImporter:
     4300048: Drill_Left_02
     4300050: Drill_Left_01
     4300052: Drill_Left_00
-    7400000: Take 001
+    7400000: firing
+    7400002: idle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -164,7 +165,175 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: firing
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Delete Me Fam
+        weight: 1
+      - path: Drill_Left_00
+        weight: 1
+      - path: Drill_Left_01
+        weight: 1
+      - path: Drill_Left_02
+        weight: 1
+      - path: Drill_Left_03
+        weight: 1
+      - path: Drill_Left_04
+        weight: 1
+      - path: Drill_Left_05
+        weight: 1
+      - path: Drill_Left_06
+        weight: 1
+      - path: Drill_Left_07
+        weight: 1
+      - path: Drill_Left_08
+        weight: 1
+      - path: Drill_Left_09
+        weight: 1
+      - path: Drill_Left_10
+        weight: 1
+      - path: Drill_Left_11
+        weight: 1
+      - path: Drill_Left_12
+        weight: 1
+      - path: Drill_Right_00
+        weight: 1
+      - path: Drill_Right_01
+        weight: 1
+      - path: Drill_Right_02
+        weight: 1
+      - path: Drill_Right_03
+        weight: 1
+      - path: Drill_Right_04
+        weight: 1
+      - path: Drill_Right_05
+        weight: 1
+      - path: Drill_Right_06
+        weight: 1
+      - path: Drill_Right_07
+        weight: 1
+      - path: Drill_Right_08
+        weight: 1
+      - path: Drill_Right_09
+        weight: 1
+      - path: Drill_Right_10
+        weight: 1
+      - path: Drill_Right_11
+        weight: 1
+      - path: Drill_Right_12
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Delete Me Fam
+        weight: 1
+      - path: Drill_Left_00
+        weight: 1
+      - path: Drill_Left_01
+        weight: 1
+      - path: Drill_Left_02
+        weight: 1
+      - path: Drill_Left_03
+        weight: 1
+      - path: Drill_Left_04
+        weight: 1
+      - path: Drill_Left_05
+        weight: 1
+      - path: Drill_Left_06
+        weight: 1
+      - path: Drill_Left_07
+        weight: 1
+      - path: Drill_Left_08
+        weight: 1
+      - path: Drill_Left_09
+        weight: 1
+      - path: Drill_Left_10
+        weight: 1
+      - path: Drill_Left_11
+        weight: 1
+      - path: Drill_Left_12
+        weight: 1
+      - path: Drill_Right_00
+        weight: 1
+      - path: Drill_Right_01
+        weight: 1
+      - path: Drill_Right_02
+        weight: 1
+      - path: Drill_Right_03
+        weight: 1
+      - path: Drill_Right_04
+        weight: 1
+      - path: Drill_Right_05
+        weight: 1
+      - path: Drill_Right_06
+        weight: 1
+      - path: Drill_Right_07
+        weight: 1
+      - path: Drill_Right_08
+        weight: 1
+      - path: Drill_Right_09
+        weight: 1
+      - path: Drill_Right_10
+        weight: 1
+      - path: Drill_Right_11
+        weight: 1
+      - path: Drill_Right_12
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

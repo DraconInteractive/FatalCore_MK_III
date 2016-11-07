@@ -42,7 +42,8 @@ ModelImporter:
     4300008: Shotgun_Left_02
     4300010: Shotgun_Left_01
     4300012: Shotgun_Left_00
-    7400000: Take 001
+    7400000: firing
+    7400002: idle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -64,7 +65,95 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: firing
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Delete Me Fam
+        weight: 1
+      - path: Shotgun_Left_00
+        weight: 1
+      - path: Shotgun_Left_01
+        weight: 1
+      - path: Shotgun_Left_02
+        weight: 1
+      - path: Shotgun_Right_00
+        weight: 1
+      - path: Shotgun_Right_01
+        weight: 1
+      - path: Shotgun_Right_02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 29
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Delete Me Fam
+        weight: 1
+      - path: Shotgun_Left_00
+        weight: 1
+      - path: Shotgun_Left_01
+        weight: 1
+      - path: Shotgun_Left_02
+        weight: 1
+      - path: Shotgun_Right_00
+        weight: 1
+      - path: Shotgun_Right_01
+        weight: 1
+      - path: Shotgun_Right_02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
