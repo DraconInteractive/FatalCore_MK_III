@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<asset>
+<contributor>
+<author>VoxelShop User</author>
+<authoring_tool>VoxelShop V1.7.01</authoring_tool>
+</contributor>
+<created>2016-11-10T17:41:08</created>
+<modified>2016-11-10T17:41:08</modified>
+<unit meter="1" name="meter"/>
+<up_axis>Y_UP</up_axis>
+</asset>
+<library_images>
+<image id="CrystalPillar_texture0-image" name="CrystalPillar_texture0-image">
+<init_from>file://CrystalPillar_texture0.png</init_from>
+</image>
+</library_images>
+<library_effects>
+<effect id="lambert0-fx">
+<profile_COMMON>
+<newparam sid="CrystalPillar_texture0-surface">
+<surface type="2D">
+<init_from>CrystalPillar_texture0-image</init_from>
+</surface>
+</newparam>
+<newparam sid="CrystalPillar_texture0-sampler">
+<sampler2D>
+<source>CrystalPillar_texture0-surface</source>
+<wrap_s>WRAP</wrap_s>
+<wrap_t>WRAP</wrap_t>
+<minfilter>NEAREST</minfilter>
+<magfilter>NEAREST</magfilter>
+</sampler2D>
+</newparam>
+<technique sid="common">
+<lambert>
+<emission>
+<color>0 0 0 1</color>
+</emission>
+<ambient>
+<color>0 0 0 1</color>
+</ambient>
+<diffuse>
+<texture texcoord="TEX0" texture="CrystalPillar_texture0-sampler"/>
+</diffuse>
+</lambert>
+</technique>
+</profile_COMMON>
+</effect>
+</library_effects>
+<library_materials>
+<material id="lambert0-material" name="lambert0">
+<instance_effect url="#lambert0-fx"/>
+</material>
+</library_materials>
+<library_geometries>
+<geometry id="Plane-tex-mesh-0" name="Plane-tex">
+<mesh>
+<source id="Plane-tex-mesh-0-positions">
+<float_array count="120" id="Plane-tex-mesh-0-positions-array">-8 40 12 -8 -40 10 -8 -40 12 -8 40 10 -8 40 -10 -8 -40 -12 -8 -40 -10 -8 40 -12 -10 40 10 -10 -40 8 -10 -40 10 -10 40 8 -10 40 -8 -10 -40 -10 -10 -40 -8 -10 40 -10 -12 40 8 -12 -40 -8 -12 -40 8 -12 40 -8 12 40 8 12 -40 -8 12 -40 8 12 40 -8 10 40 10 10 -40 8 10 -40 10 10 40 8 10 40 -8 10 -40 -10 10 -40 -8 10 40 -10 8 40 12 8 -40 10 8 -40 12 8 40 10 8 40 -10 8 -40 -12 8 -40 -10 8 40 -12</float_array>
+<technique_common>
+<accessor count="40" source="#Plane-tex-mesh-0-positions-array" stride="3">
+<param name="X" type="float"/>
+<param name="Y" type="float"/>
+<param name="Z" type="float"/>
+</accessor>
+</technique_common>
+</source>
+<source id="Plane-tex-mesh-0-uvs">
+<float_array count="60" id="Plane-tex-mesh-0-uvs-array">0.12517677 0.7500884 0.2499116 0.8748232 0.2499116 0.7500884 0.1250884 0.7501768 0.1250884 0.8749116 0.24982323 0.8749116 0.12509868 0.7501864 0.12509868 0.8610344 0.24980266 0.8748904 0.24984024 0.7500841 0.12509249 0.7500841 0.13756727 0.87483186 0.12518637 0.87490135 0.23603436 0.87490135 0.24989037 0.75019735 0.24984024 0.8749159 0.13756727 0.75016814 0.12509249 0.8749159 0.12519734 0.8748904 0.24990132 0.8610344 0.24990132 0.7501864 0.1250884 0.8748232 0.24982323 0.7500884 0.1250884 0.7500884 0.23603436 0.75009865 0.12518637 0.75009865 0.24989037 0.87480265 0.12517677 0.8749116 0.2499116 0.8749116 0.2499116 0.7501768</float_array>
+<technique_common>
+<accessor count="30" source="#Plane-tex-mesh-0-uvs-array" stride="2">
+<param name="S" type="float"/>
+<param name="T" type="float"/>
+</accessor>
+</technique_common>
+</source>
+<vertices id="Plane-tex-mesh-0-vertices">
+<input semantic="POSITION" source="#Plane-tex-mesh-0-positions"/>
+</vertices>
+<polylist count="76" material="lambert0-material">
+<input offset="0" semantic="VERTEX" source="#Plane-tex-mesh-0-vertices"/>
+<input offset="1" semantic="TEXCOORD" set="0" source="#Plane-tex-mesh-0-uvs"/>
+<vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+<p>0 0 1 1 2 2 0 3 3 4 1 5 4 0 5 1 6 2 4 3 7 4 5 5 8 0 9 1 10 2 8 3 11 4 9 5 12 0 13 1 14 2 12 3 15 4 13 5 16 0 17 1 18 2 16 3 19 4 17 5 21 1 20 0 22 2 23 4 20 3 21 5 25 1 24 0 26 2 27 4 24 3 25 5 29 1 28 0 30 2 31 4 28 3 29 5 33 1 32 0 34 2 35 4 32 3 33 5 37 1 36 0 38 2 39 4 36 3 37 5 30 1 22 0 25 2 30 7 25 6 38 8 21 4 22 3 30 5 29 4 30 3 38 5 25 10 9 9 38 11 6 13 38 12 9 14 33 16 9 15 25 17 14 19 6 18 9 20 5 1 38 0 6 2 33 22 25 21 26 23 33 25 1 24 9 26 14 4 9 3 17 5 13 28 6 27 14 29 37 4 38 3 5 5 9 1 1 0 10 2 33 4 34 3 1 5 17 1 9 0 18 2 1 1 34 0 2 2 20 0 28 1 27 2 27 6 28 7 36 8 20 3 23 4 28 5 28 3 31 4 36 5 11 9 27 10 36 11 36 12 4 13 11 14 11 15 35 16 27 17 4 18 12 19 11 20 36 0 7 1 4 2 27 21 35 22 24 23 3 24 35 25 11 26 11 3 12 4 19 5 4 27 15 28 12 29 36 3 39 4 7 5 3 0 11 1 8 2 32 3 35 4 3 5 11 0 19 1 16 2 32 0 3 1 0 2 22 0 27 1 25 2 22 3 20 4 27 5 9 0 16 1 18 2 9 3 11 4 16 5 26 0 35 1 33 2 26 3 24 4 35 5 1 0 8 1 10 2 1 3 3 4 8 5 34 0 0 1 2 2 34 3 32 4 0 5 7 1 37 0 5 2 39 4 37 3 7 5 36 1 29 0 38 2 31 4 29 3 36 5 15 1 6 0 13 2 4 4 6 3 15 5 28 1 21 0 30 2 23 4 21 3 28 5 19 1 14 0 17 2 12 4 14 3 19 5</p>
+</polylist>
+</mesh>
+</geometry>
+</library_geometries>
+<library_visual_scenes>
+<visual_scene id="Scene" name="Scene">
+<node id="crystalpillar.merged" name="crystalpillar.merged" type="NODE">
+<translate sid="location">0 0 0</translate>
+<rotate sid="rotationZ">0 0 1 0</rotate>
+<rotate sid="rotationY">0 1 0 0</rotate>
+<rotate sid="rotationX">1 0 0 0</rotate>
+<scale sid="scale">0.05 0.05 0.05</scale>
+<instance_geometry name="merged" sid="merged" url="#Plane-tex-mesh-0">
+<bind_material>
+<technique_common>
+<instance_material symbol="lambert0-material" target="#lambert0-material">
+<bind_vertex_input input_semantic="TEXCOORD" input_set="0" semantic="TEX0"/>
+</instance_material>
+</technique_common>
+</bind_material>
+</instance_geometry>
+</node>
+</visual_scene>
+</library_visual_scenes>
+<scene>
+<instance_visual_scene url="#Scene"/>
+</scene>
+</COLLADA>
