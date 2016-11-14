@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 23ff296cf0826af4eade003612c9844c
-timeCreated: 1479036918
+guid: 9c94dfd4025a2884ab3a79a1e2eac239
+timeCreated: 1479104661
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: yellowsilo.merged
+    4300000: miningvehicle.merged
     9500000: //RootNode
   materials:
     importMaterials: 1

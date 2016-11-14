@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 23ff296cf0826af4eade003612c9844c
-timeCreated: 1479036918
+guid: d570af2c16bc47a409eda9caeb837d2a
+timeCreated: 1479104662
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: yellowsilo.merged
+    4300000: garage.merged
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 15
+    globalScale: 20
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
