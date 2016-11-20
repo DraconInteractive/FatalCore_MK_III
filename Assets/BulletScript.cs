@@ -28,7 +28,7 @@ public class BulletScript : MonoBehaviour {
 			Sparkles();
 		} 
 
-		if (col.gameObject.tag == "Swarm" || col.gameObject.tag == "Tower" || col.gameObject.tag == "Elite"){
+		if (col.gameObject.tag == "Swarm" || col.gameObject.tag == "Tower" || col.gameObject.tag == "Elite" || col.gameObject.tag == "Boss" || col.gameObject.tag == "BossPlate"){
 			ApplyDamage (col.gameObject);
 		}
 	}
@@ -53,6 +53,9 @@ public class BulletScript : MonoBehaviour {
 			break;
 		case "Tower":
 			g.GetComponent<AI_Tower_Script> ().DamageAI (damage);
+			break;
+		case "BossPlate":
+			g.GetComponent<BOSS_Plate_Script>().Damage(damage);
 			break;
 		}
 	}
