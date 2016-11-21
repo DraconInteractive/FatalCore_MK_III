@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.ImageEffects;
+using Kino;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
@@ -26,7 +27,10 @@ public class Player_Script : MonoBehaviour {
 
 	private bool playerHasControl;
 
+	bool effectActive, kinoActive;
 
+	public AnalogGlitch ag;
+	public DigitalGlitch dg;
 	//Player Statistics
 
 	public float health, shield; 
@@ -73,6 +77,9 @@ public class Player_Script : MonoBehaviour {
 	void Awake () {
 		playerObj = this.gameObject;
 		rb = gameObject.GetComponent<Rigidbody> ();
+		ag = Camera.main.gameObject.GetComponent<AnalogGlitch> ();
+		dg = Camera.main.gameObject.GetComponent<DigitalGlitch> ();
+
 		speedMult = 1;
 		boostSlider.minValue = 0;
 		boostSlider.maxValue = boostTimeMax;
@@ -145,8 +152,11 @@ public class Player_Script : MonoBehaviour {
 		if (homeBoundActive){
 			GoHome ();
 		}
+	}
 
-
+	void OnEnable () {
+		ag = Camera.main.GetComponent<AnalogGlitch> ();
+		dg = Camera.main.GetComponent<DigitalGlitch> ();
 	}
 
 	private void ConstructEnemyCounter () {
@@ -277,16 +287,13 @@ public class Player_Script : MonoBehaviour {
 			boostActive = false;
 		}
 
-//		if (Input.GetKeyDown(KeyCode.Escape)){
+		if (Input.GetKeyDown(KeyCode.Escape)){
 //			UnityEditor.EditorApplication.isPlaying = false;
-//		}
-//
-		if (Input.GetKeyDown(KeyCode.I)){
-			ToggleInventory ();
+			Application.Quit ();
 		}
 
-		if (Input.GetKeyDown(KeyCode.H)){
-			ToggleHomeBound ();
+		if (Input.GetKeyDown(KeyCode.I)){
+			ToggleInventory ();
 		}
 
 		if (primaryTimer > 0){
@@ -655,6 +662,10 @@ public class Player_Script : MonoBehaviour {
 	}
 
 	public void DamagePlayer (int damage) {
+		
+		if (!effectActive) {
+			StartCoroutine (PlayerDamageEffect ());
+		}
 
 		if (shield > 0) {
 			shield -= damage;
@@ -668,10 +679,34 @@ public class Player_Script : MonoBehaviour {
 		}
 			
 		if (health <= 0) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+			StartCoroutine (PlayerDeath ());
 		}
 
 		healthSlider.value = health;
 		shieldSlider.value = shield;
+	}
+		
+	IEnumerator PlayerDamageEffect () {
+		effectActive = true;
+		print ("DEActive");
+		ag.colorDrift += 0.25f;
+		ag.scanLineJitter += 0.5f;
+		yield return new WaitForSeconds (0.25f);
+		ag.colorDrift -= 0.25f;
+		ag.scanLineJitter -= 0.5f;
+		effectActive = false;
+		yield break;
+	}
+
+	IEnumerator PlayerDeath () {
+		while (dg.intensity < 1) {
+			dg.intensity += 0.1f;
+			yield return new WaitForSeconds (0.1f);
+		}
+
+		yield return new WaitForSeconds (1.0f);
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		dg.intensity = 0;
+		yield break;
 	}
 }

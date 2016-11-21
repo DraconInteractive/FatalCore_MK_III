@@ -128,7 +128,7 @@ public class Swarm_AI_Script : MonoBehaviour {
 		while (true) {
 			if (Vector3.Distance (swarmTarget.transform.position, transform.position) < fireRadius) {
 				GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
-				bullet.GetComponent<Rigidbody> ().AddForce ((swarmTarget.transform.position - transform.position).normalized * 10, ForceMode.VelocityChange);
+				bullet.GetComponent<Rigidbody> ().AddForce ((swarmTarget.transform.position - transform.position).normalized * 15, ForceMode.VelocityChange);
 			}
 			yield return new WaitForSeconds (0.5f);
 		}
