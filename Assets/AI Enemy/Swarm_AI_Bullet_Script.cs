@@ -21,7 +21,8 @@ public class Swarm_AI_Bullet_Script : MonoBehaviour {
 		if (col.gameObject.tag == "Player"){
 			print ("HitPlayer");
 			col.gameObject.GetComponent<Player_Script> ().DamagePlayer (damage);
-			Destroy (this.gameObject);
+			GetComponent<SphereCollider> ().enabled = false;
+			GetComponent<MeshRenderer> ().enabled = false;
 		}
 	}
 }
