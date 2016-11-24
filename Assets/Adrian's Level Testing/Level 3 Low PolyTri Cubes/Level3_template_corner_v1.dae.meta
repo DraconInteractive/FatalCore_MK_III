@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0d9d76d3a600d8d44827a0b7358b91d1
-timeCreated: 1479924788
+guid: 29e042fdcd1ca7a43afcee19fd16fbdb
+timeCreated: 1479959763
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: level3_corner_template_v1.level_3_template_corner_v6
+    4300000: level3_template_corner_v1.level_3_template_corner_v1
     9500000: //RootNode
   materials:
     importMaterials: 1
