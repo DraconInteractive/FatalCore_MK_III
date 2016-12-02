@@ -29,7 +29,7 @@ public class AI_Tower_Script : MonoBehaviour {
 		if (!cooling) {
 			if (Vector3.Distance(player.transform.position, transform.position) < fireRadius) {
 				GameObject bullet = Instantiate (bulletTemplate, turretPoint.transform.position, Quaternion.identity) as GameObject;
-				bullet.GetComponent<Rigidbody> ().AddForce (/*(player.transform.position - transform.position).normalized * 10*/ transform.forward * 10, ForceMode.VelocityChange);
+				bullet.GetComponent<Rigidbody> ().AddForce (/*(player.transform.position - transform.position).normalized * 10*/ (transform.forward + (transform.up * Random.Range (0.0f, 1.0f)) + (transform.right * Random.Range(0.0f, 1.0f))) * 25, ForceMode.VelocityChange);
 				cooling = true;
 				coolingTimer = fireRate;
 			}
