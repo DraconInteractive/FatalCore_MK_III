@@ -308,6 +308,14 @@ public class Player_Script : MonoBehaviour {
 		if (secondaryTimer > 0){
 			secondaryTimer -= Time.deltaTime;
 		}
+
+		if (Input.GetKeyDown(KeyCode.F2)) {
+			SceneManager.LoadScene (1);
+		}
+
+		if (Input.GetKeyDown(KeyCode.F3)) {
+			SceneManager.LoadScene (2);
+		}
 	}
 
 	#region weapons
@@ -480,9 +488,11 @@ public class Player_Script : MonoBehaviour {
 				GameObject gatlingBullet = Instantiate (gatlingBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
 				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - gatlingSpread, targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - gatlingSpread, targetPosition.y + gatlingSpread), Random.Range (targetPosition.z - gatlingSpread, targetPosition.z + gatlingSpread));
 				gatlingBullet.transform.LookAt (bulletTarget);
-				gatlingBullet.GetComponent<Rigidbody> ().AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
+				Rigidbody gRB = gatlingBullet.GetComponent<Rigidbody> ();
+				gRB.velocity = rb.velocity;
+				gRB.AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
-				primaryHeat += 1;
+				primaryHeat += 1.5f;
 				leftGatAnim.SetBool ("firing", true);
 			
 				break;
@@ -491,7 +501,9 @@ public class Player_Script : MonoBehaviour {
 				GameObject railBullet = Instantiate (railBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
 				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
 				railBullet.transform.LookAt (railTargetPosition);
-				railBullet.GetComponent<Rigidbody> ().AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
+				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
+				rRB.velocity = rb.velocity;
+				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
 				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
 				primaryHeat += 15;
 				leftRailAnim.SetBool ("firing", true);
@@ -505,7 +517,9 @@ public class Player_Script : MonoBehaviour {
 					GameObject shot = Instantiate (shotBulletTemplate, primaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range (targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
-					shot.GetComponent<Rigidbody> ().AddForce (shot.transform.forward * shotBulletForce);
+					Rigidbody sRB = shot.GetComponent<Rigidbody> ();
+					sRB.velocity = rb.velocity;
+					sRB.AddForce (shot.transform.forward * shotBulletForce);
 					shot.GetComponent<BulletScript> ().damage += (int)shotMod.damageMod;
 				}
 
@@ -552,7 +566,9 @@ public class Player_Script : MonoBehaviour {
 				GameObject bullet = Instantiate (gatlingBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
 				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.y + gatlingSpread), targetPosition.z);
 				bullet.transform.LookAt (bulletTarget);
-				bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
+				Rigidbody gRB = bullet.GetComponent<Rigidbody> ();
+				gRB.velocity = rb.velocity;
+				gRB.AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
 				bullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
 				secondaryHeat += 1;
 
@@ -563,7 +579,9 @@ public class Player_Script : MonoBehaviour {
 				GameObject railBullet = Instantiate (railBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
 				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
 				railBullet.transform.LookAt (railTargetPosition);
-				railBullet.GetComponent<Rigidbody> ().AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
+				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
+				rRB.velocity = rb.velocity;
+				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
 				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
 				secondaryHeat += 15;
 
@@ -577,8 +595,11 @@ public class Player_Script : MonoBehaviour {
 					GameObject shot = Instantiate (shotBulletTemplate, secondaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
+					Rigidbody sRB = shot.GetComponent<Rigidbody> ();
+					sRB.velocity = rb.velocity;
+					sRB.AddForce (shot.transform.forward * shotBulletForce);
 					shot.GetComponent<BulletScript> ().damage += (int)shotMod.damageMod;
-					shot.GetComponent<Rigidbody> ().AddForce (shot.transform.forward * shotBulletForce);
+				
 				}
 
 				secondaryHeat += 30;
@@ -723,7 +744,6 @@ public class Player_Script : MonoBehaviour {
 //		fmodMovementEmitter.Params [0].Value = Input.GetAxis ("Vertical") * 100;
 		float value = Mathf.Abs (Input.GetAxis ("Forward") * 100);
 		fmodMovementEmitter.SetParameter ("Speed",value);
-		print (Input.GetAxis("Forward"));
 	}
 		
 	#endregion
