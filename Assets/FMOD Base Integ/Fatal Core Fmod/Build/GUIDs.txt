@@ -1,0 +1,23 @@
+{fc395b8a-9101-47e5-a67e-e73abd980530} event:/Menu & Pregame/Menu Ambience
+{7b9b53ac-7c79-40ec-ab48-d3a5dbc9f2b1} event:/Menu & Pregame/Menu Movements
+{65de5f59-35e8-47b5-b5a0-7fe81d510b0f} event:/Menu & Pregame/Menu Select
+{c830d6f4-cef1-4348-953c-ec5944d63deb} event:/Menu & Pregame/Epic Enter Game Sound
+{a5057e67-d98a-4ea7-af93-d9442acdc7cc} event:/Menu & Pregame/Pre Game Take-Off Sound
+{4102efa0-89d3-4f14-aaee-a46f7e0848f1} event:/Menu & Pregame/Pre Game Take-Off Sound (2)
+{1fd56bf3-058c-4e8e-a86f-6a67b33b4b5f} event:/Player/Cockpit Ambience
+{53e52233-9246-4e0c-864b-992fcc4d3c72} event:/Player/Movement
+{626bcc8a-bebe-4bfd-9c91-e7877e3a5f03} event:/Player/Shields
+{f6ebe221-ffd0-4f46-9cf5-2c62a4e7ecaa} event:/Player/Boosters
+{a36df549-b633-4651-84eb-2c90ba87c420} event:/Player/Weapon 1
+{dbedb22e-164c-49cd-9e03-b0e1b4012c28} event:/Player/Weapon 2
+{8d5c2270-8e6f-43fa-8c1a-f71628072c8c} event:/Player/Weapon 3
+{bf838338-736c-4a1e-a066-81e7954a0d1b} event:/Player/Weapon 4
+{c33434c2-9ed3-4246-a327-bf300e76eb73} event:/Player/Weapon Overheat
+{49453b20-a772-4838-9171-1c9b84e0e9a9} event:/Player/Alerts-Wall-Death
+{16b0aefe-280b-4e6e-a8cb-08d725289c89} bus:/
+{ee0dd8a9-ff9b-40a6-8984-46b6118dfbc0} bus:/Reverb
+{d0dd2f26-12a2-4aef-81bf-245b464b137f} bank:/Level 4
+{59666ef2-8369-4290-95bf-344bf83c587d} bank:/Level 3
+{188eb47c-7e2a-4ad5-87db-ca1d5397d522} bank:/Level 2
+{4ae018bc-2beb-4bf0-b880-31d23592f479} bank:/Level 1
+{f3ec5b13-c1b4-47d1-989e-f796fc1ec7b1} bank:/Master Bank

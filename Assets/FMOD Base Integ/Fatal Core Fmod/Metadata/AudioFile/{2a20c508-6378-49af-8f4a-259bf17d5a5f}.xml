@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{2a20c508-6378-49af-8f4a-259bf17d5a5f}">
+        <property name="assetPath">
+            <value>Golem Attack 3.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.353514739229025</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c82bc783-d573-42cf-9de3-5c56d424d100}</destination>
+        </relationship>
+    </object>
+</objects>

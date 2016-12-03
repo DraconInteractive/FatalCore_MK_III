@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{552fc9d4-2d90-4e13-ae88-db6419512f36}">
+        <property name="assetPath">
+            <value>DRILL_9.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.5</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c82bc783-d573-42cf-9de3-5c56d424d100}</destination>
+        </relationship>
+    </object>
+</objects>

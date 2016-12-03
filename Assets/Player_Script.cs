@@ -5,9 +5,12 @@ using Kino;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 [RequireComponent(typeof(Rigidbody))]
 public class Player_Script : MonoBehaviour {
-
+	
 	public static GameObject playerObj, passCube;
 	Rigidbody rb;
 	public float forwardSpeed, horizontalSpeed, verticalSpeed, sidePulseSpeed;
@@ -74,6 +77,8 @@ public class Player_Script : MonoBehaviour {
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
+	public StudioEventEmitter fmodMovementEmitter;
+
 	void Awake () {
 		playerObj = this.gameObject;
 		rb = gameObject.GetComponent<Rigidbody> ();
@@ -132,6 +137,7 @@ public class Player_Script : MonoBehaviour {
 		print ("leftShot: " + leftShotAnim.avatar.isValid);
 		print ("rightDrill: " + rightSawAnim.avatar.isValid);
 		print ("leftDrill: " + leftSawAnim.avatar.isValid);
+
 	}
 	
 	// Update is called once per frame
@@ -140,7 +146,7 @@ public class Player_Script : MonoBehaviour {
 		UpdateUI();
 		BoostUpdate();
 		HeatUpdate ();
-
+		MovementFMOD ();
 	}
 
 	void FixedUpdate () {
@@ -149,16 +155,13 @@ public class Player_Script : MonoBehaviour {
 			CameraRotation ();
 
 		}
-		if (homeBoundActive){
-			GoHome ();
-		}
 	}
 
 	void OnEnable () {
 		ag = Camera.main.GetComponent<AnalogGlitch> ();
 		dg = Camera.main.GetComponent<DigitalGlitch> ();
 	}
-
+	#region EnemyFunctions
 	private void ConstructEnemyCounter () {
 		totalEnemies = allEnemies.Length;
 		enemyCounterText.text = "Enemies:" + "\n" + totalEnemies + "/" + totalEnemies;
@@ -169,15 +172,15 @@ public class Player_Script : MonoBehaviour {
 		if (DetectEnemies ().Length <= 0) {
 			passCube.SetActive (false);
 		} else if (DetectEnemies ().Length <= 10 && DetectEnemies ().Length >= 0) {
-			LightEmUp ();
+//			LightEmUp ();
 		}
 	}
 
-	private void LightEmUp () {
-		for (int i = 0; i < DetectEnemies ().Length; i++) {
-			
-		}
-	}
+//	private void LightEmUp () {
+//		for (int i = 0; i < DetectEnemies ().Length; i++) {
+//			
+//		}
+//	}
 
 
 	private GameObject[] DetectEnemies () {
@@ -188,13 +191,14 @@ public class Player_Script : MonoBehaviour {
 		GameObject[] combinedEnemies = towersAndSwarms.Concat (elites).ToArray ();
 		return combinedEnemies;
 	}
+	#endregion
 
 	void OnDrawGizmos () {
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
 		Gizmos.DrawWireCube(secondaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
 	}
-
+	#region locomotion
 	private void PlayerMovement () {
 		Vector3 moveX = transform.right * Input.GetAxis("Horizontal") * horizontalSpeed;
 //		Vector3 moveX = Vector3.zero;
@@ -239,7 +243,8 @@ public class Player_Script : MonoBehaviour {
 		rb.AddRelativeTorque (uprightCorrection * correctionStrength);
 
 	}
-		
+	#endregion	
+
 	private void PlayerInput () {
 
 		if (playerHasControl){
@@ -305,6 +310,7 @@ public class Player_Script : MonoBehaviour {
 		}
 	}
 
+	#region weapons
 	private void ChoosePrimary (weaponTypes weapon){
 		primaryWeapon = weapon;
 
@@ -478,6 +484,7 @@ public class Player_Script : MonoBehaviour {
 				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
 				primaryHeat += 1;
 				leftGatAnim.SetBool ("firing", true);
+			
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool - railMod.fireRateMod;
@@ -488,7 +495,7 @@ public class Player_Script : MonoBehaviour {
 				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
 				primaryHeat += 15;
 				leftRailAnim.SetBool ("firing", true);
-
+			
 				break;
 			case weaponTypes.SHOT:
 				primaryTimer = shotCool - shotMod.fireRateMod;
@@ -504,6 +511,7 @@ public class Player_Script : MonoBehaviour {
 
 				primaryHeat += 30;
 				leftShotAnim.SetBool ("firing", true);
+		
 				break;
 			case weaponTypes.SAW:
 				primaryTimer = sawCool - sawMod.fireRateMod;
@@ -525,6 +533,7 @@ public class Player_Script : MonoBehaviour {
 				}
 
 				leftSawAnim.SetBool ("firing", true);
+
 				break;
 			}
 
@@ -597,7 +606,9 @@ public class Player_Script : MonoBehaviour {
 			}
 		}
 	}
+	#endregion
 
+	#region stat updates
 	private void UpdateUI(){
 		boostSlider.value = boostTimeCurrent;
 		primaryHeatSlider.value = primaryHeat;
@@ -657,10 +668,6 @@ public class Player_Script : MonoBehaviour {
 		}
 	}
 
-	private void GoHome(){
-		
-	}
-
 	public void DamagePlayer (int damage) {
 		
 		if (!effectActive) {
@@ -709,4 +716,15 @@ public class Player_Script : MonoBehaviour {
 		dg.intensity = 0;
 		yield break;
 	}
+	#endregion
+	#region FMOD
+
+	void MovementFMOD () {
+//		fmodMovementEmitter.Params [0].Value = Input.GetAxis ("Vertical") * 100;
+		float value = Mathf.Abs (Input.GetAxis ("Forward") * 100);
+		fmodMovementEmitter.SetParameter ("Speed",value);
+		print (Input.GetAxis("Forward"));
+	}
+		
+	#endregion
 }

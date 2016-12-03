@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour {
 	public int damage;
 	private bool dying;
 	private ParticleSystem ps;
+
 	// Use this for initialization
 	void Start () {
 		ps = GetComponent<ParticleSystem>();
