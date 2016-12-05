@@ -53,3 +53,7 @@
 [LOG] SystemI::close                           : Free channel pool.
 [LOG] SystemI::close                           : done.
 
+<<<<<<< HEAD
+=======
+[LOG] System::create                           : Header version = 1.08.14. Current version = 1.08.14.
+>>>>>>> origin/master
