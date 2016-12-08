@@ -80,6 +80,7 @@ public class Player_Script : MonoBehaviour {
 	public StudioEventEmitter fmodMovementEmitter;
 
 	public GatlingLaserScript gatLeftLaser, gatRightLaser;
+	public RailLaserScript railLeftLaser, railRightLaser;
 
 	void Awake () {
 		playerObj = this.gameObject;
@@ -123,8 +124,8 @@ public class Player_Script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		mb = Camera.main.GetComponent<MotionBlur> ();
-		ChoosePrimary (weaponTypes.GATLING);
-		ChooseSecondary (weaponTypes.GATLING);
+		ChoosePrimary (weaponTypes.RAIL);
+		ChooseSecondary (weaponTypes.RAIL);
 		playerHasControl = true;
 		health = 100;
 		shield = 100;
@@ -502,15 +503,17 @@ public class Player_Script : MonoBehaviour {
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool - railMod.fireRateMod;
-				GameObject railBullet = Instantiate (railBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
-				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
-				railBullet.transform.LookAt (railTargetPosition);
-				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
-				rRB.velocity = rb.velocity;
-				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
-				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
+//				GameObject railBullet = Instantiate (railBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
+//				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
+//				railBullet.transform.LookAt (railTargetPosition);
+//				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
+//				rRB.velocity = rb.velocity;
+//				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
+//				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
+				railLeftLaser.StopCoroutine ("FireLaser");
+				railLeftLaser.StartCoroutine ("FireLaser");
 				primaryHeat += 15;
-				leftRailAnim.SetBool ("firing", true);
+				leftRailAnim.SetTrigger ("Fire");
 			
 				break;
 			case weaponTypes.SHOT:
@@ -522,8 +525,9 @@ public class Player_Script : MonoBehaviour {
 					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range (targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
 					Rigidbody sRB = shot.GetComponent<Rigidbody> ();
-					sRB.velocity = rb.velocity;
+//					sRB.velocity = rb.velocity;
 					sRB.AddForce (shot.transform.forward * shotBulletForce);
+					sRB.velocity = Vector3.ClampMagnitude (sRB.velocity, 10);
 					shot.GetComponent<BulletScript> ().damage += (int)shotMod.damageMod;
 				}
 
@@ -582,16 +586,19 @@ public class Player_Script : MonoBehaviour {
 				break;
 			case weaponTypes.RAIL:
 				secondaryTimer = railCool - railMod.fireRateMod;
-				GameObject railBullet = Instantiate (railBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
-				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
-				railBullet.transform.LookAt (railTargetPosition);
-				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
-				rRB.velocity = rb.velocity;
-				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
-				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
+//				GameObject railBullet = Instantiate (railBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
+//				Vector3 railTargetPosition = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width / 2, Screen.height / 2, 1000));
+//				railBullet.transform.LookAt (railTargetPosition);
+//				Rigidbody rRB = railBullet.GetComponent<Rigidbody> ();
+//				rRB.velocity = rb.velocity;
+//				rRB.AddForce (railBullet.transform.forward * railBulletForce, ForceMode.Impulse);
+//				railBullet.transform.GetChild (0).gameObject.GetComponent<Rail_Bullet_Script> ().damage += (int)railMod.damageMod;
+				railRightLaser.StopCoroutine ("FireLaser");
+				railRightLaser.StartCoroutine ("FireLaser");
 				secondaryHeat += 15;
 
-				rightRailAnim.SetBool ("firing", true);
+				rightRailAnim.SetTrigger ("Fire");
+
 				break;
 			case weaponTypes.SHOT:
 				secondaryTimer = shotCool - shotMod.fireRateMod;
