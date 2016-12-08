@@ -129,14 +129,14 @@ public class Player_Script : MonoBehaviour {
 		allEnemies = DetectEnemies ();
 		Invoke ("ConstructEnemyCounter", 0.5f);
 		DamagePlayer (0);
-		print ("rightGat: " + rightGatAnim.avatar.isValid);
-		print ("leftGat: " + leftGatAnim.avatar.isValid);
-		print ("rightRail: " + rightRailAnim.avatar.isValid);
-		print ("leftRail: " + leftRailAnim.avatar.isValid);
-		print ("rightShot: " + rightShotAnim.avatar.isValid);
-		print ("leftShot: " + leftShotAnim.avatar.isValid);
-		print ("rightDrill: " + rightSawAnim.avatar.isValid);
-		print ("leftDrill: " + leftSawAnim.avatar.isValid);
+//		print ("rightGat: " + rightGatAnim.avatar.isValid);
+//		print ("leftGat: " + leftGatAnim.avatar.isValid);
+//		print ("rightRail: " + rightRailAnim.avatar.isValid);
+//		print ("leftRail: " + leftRailAnim.avatar.isValid);
+//		print ("rightShot: " + rightShotAnim.avatar.isValid);
+//		print ("leftShot: " + leftShotAnim.avatar.isValid);
+//		print ("rightDrill: " + rightSawAnim.avatar.isValid);
+//		print ("leftDrill: " + leftSawAnim.avatar.isValid);
 
 	}
 	

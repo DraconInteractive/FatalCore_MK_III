@@ -16,11 +16,16 @@ public class AI_Tower_Script : MonoBehaviour {
 	public float maxHealth;
 
 	public Animator anim;
+	public Tower_Laser laser;
+
+	float timeDeviation;
 	// Use this for initialization
 	void Start () {
 		turretPoint = transform.GetChild (0).gameObject;
 		player = Player_Script.playerObj;
 		currentHealth = maxHealth;
+
+		timeDeviation = Random.Range (0.0f, 2.0f);
 	}
 
 	void Update () {
@@ -30,15 +35,18 @@ public class AI_Tower_Script : MonoBehaviour {
 	private void Fire () {
 		if (!cooling) {
 			if (Vector3.Distance(player.transform.position, transform.position) < fireRadius) {
-				GameObject bullet = Instantiate (bulletTemplate, turretPoint.transform.position, Quaternion.identity) as GameObject;
-				bullet.GetComponent<Rigidbody> ().AddForce (/*(player.transform.position - transform.position).normalized * 10*/ (transform.forward + (transform.up * Random.Range (0.0f, 1.0f)) + (transform.right * Random.Range(0.0f, 1.0f))) * 25, ForceMode.VelocityChange);
+//				GameObject bullet = Instantiate (bulletTemplate, turretPoint.transform.position, Quaternion.identity) as GameObject;
+//				bullet.GetComponent<Rigidbody> ().AddForce (/*(player.transform.position - transform.position).normalized * 10*/ (transform.forward + (transform.up * Random.Range (-0.25f, 0.25f)) + (transform.right * Random.Range(-0.25f, 0.25f))) * 25, ForceMode.VelocityChange);
+				laser.StopCoroutine ("FireLaser");
+				laser.StartCoroutine ("FireLaser");
 				cooling = true;
 				coolingTimer = fireRate;
 			}
 		}
 
 		coolingTimer -= Time.deltaTime;
-		if (coolingTimer <= 0) {
+		if (coolingTimer <= 0 + timeDeviation) {
+			timeDeviation = 0;
 			cooling = false;
 		}
 	}
