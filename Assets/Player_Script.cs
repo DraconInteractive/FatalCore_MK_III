@@ -124,7 +124,7 @@ public class Player_Script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		mb = Camera.main.GetComponent<MotionBlur> ();
-		ChoosePrimary (weaponTypes.RAIL);
+		ChoosePrimary (weaponTypes.GATLING);
 		ChooseSecondary (weaponTypes.RAIL);
 		playerHasControl = true;
 		health = 100;
