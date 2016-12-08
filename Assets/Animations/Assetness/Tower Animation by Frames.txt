@@ -1,0 +1,5 @@
+Tower Animation by Frames
+
+Idle		000-000
+
+Attack		000-100

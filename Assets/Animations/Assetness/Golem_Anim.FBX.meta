@@ -1,0 +1,985 @@
+fileFormatVersion: 2
+guid: 4926021fd3f14c341b476c4936d92e46
+timeCreated: 1481186119
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Center_BNE_01
+    100002: Center_BNE_02
+    100004: Center_BNE_03
+    100006: Center_BNE_04
+    100008: Center_CTRL_01
+    100010: Center_CTRL_02
+    100012: Center_CTRL_03
+    100014: Center_NUB_05
+    100016: Crystal
+    100018: Crystal_BNE_01
+    100020: Crystal_CTRL_01
+    100022: Crystal_NUB_02
+    100024: Frame
+    100026: //RootNode
+    100028: Left Arm
+    100030: Left_BNE_01
+    100032: Left_BNE_02
+    100034: Left_BNE_03
+    100036: Left_CTRL_01
+    100038: Left_CTRL_02
+    100040: Left_CTRL_03
+    100042: Left_NUB_04
+    100044: Right Arm
+    100046: Right_BNE_01
+    100048: Right_BNE_02
+    100050: Right_BNE_03
+    100052: Right_CTRL_01
+    100054: Right_CTRL_02
+    100056: Right_CTRL_03
+    100058: Right_NUB_04
+    100060: Root_CTRL_01
+    100062: Tail
+    400000: Center_BNE_01
+    400002: Center_BNE_02
+    400004: Center_BNE_03
+    400006: Center_BNE_04
+    400008: Center_CTRL_01
+    400010: Center_CTRL_02
+    400012: Center_CTRL_03
+    400014: Center_NUB_05
+    400016: Crystal
+    400018: Crystal_BNE_01
+    400020: Crystal_CTRL_01
+    400022: Crystal_NUB_02
+    400024: Frame
+    400026: //RootNode
+    400028: Left Arm
+    400030: Left_BNE_01
+    400032: Left_BNE_02
+    400034: Left_BNE_03
+    400036: Left_CTRL_01
+    400038: Left_CTRL_02
+    400040: Left_CTRL_03
+    400042: Left_NUB_04
+    400044: Right Arm
+    400046: Right_BNE_01
+    400048: Right_BNE_02
+    400050: Right_BNE_03
+    400052: Right_CTRL_01
+    400054: Right_CTRL_02
+    400056: Right_CTRL_03
+    400058: Right_NUB_04
+    400060: Root_CTRL_01
+    400062: Tail
+    4300000: Frame
+    4300002: Crystal
+    4300004: Right Arm
+    4300006: Left Arm
+    4300008: Tail
+    7400000: Total
+    7400002: Idle
+    7400004: Idle->Forward
+    7400006: Forward
+    7400008: Idle->Left
+    7400010: Left
+    7400012: Idle->Right
+    7400014: Right
+    7400016: Attack
+    7400018: Idle-Backward
+    7400020: Backward
+    9500000: //RootNode
+    13700000: Crystal
+    13700002: Frame
+    13700004: Left Arm
+    13700006: Right Arm
+    13700008: Tail
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Total
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 480
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle->Forward
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Forward
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle->Left
+      takeName: Take 001
+      firstFrame: 201
+      lastFrame: 219
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Left
+      takeName: Take 001
+      firstFrame: 220
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle->Right
+      takeName: Take 001
+      firstFrame: 301
+      lastFrame: 319
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Right
+      takeName: Take 001
+      firstFrame: 320
+      lastFrame: 400
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 401
+      lastFrame: 480
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Center_BNE_01
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04
+        weight: 1
+      - path: Center_BNE_01/Center_BNE_02/Center_BNE_03/Center_BNE_04/Center_NUB_05
+        weight: 1
+      - path: Crystal
+        weight: 1
+      - path: Crystal_BNE_01
+        weight: 1
+      - path: Crystal_BNE_01/Crystal_NUB_02
+        weight: 1
+      - path: Frame
+        weight: 1
+      - path: Left Arm
+        weight: 1
+      - path: Left_BNE_01
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03
+        weight: 1
+      - path: Left_BNE_01/Left_BNE_02/Left_BNE_03/Left_NUB_04
+        weight: 1
+      - path: Right Arm
+        weight: 1
+      - path: Right_BNE_01
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03
+        weight: 1
+      - path: Right_BNE_01/Right_BNE_02/Right_BNE_03/Right_NUB_04
+        weight: 1
+      - path: Root_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Center_CTRL_01/Center_CTRL_02/Center_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Crystal_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Left_CTRL_01/Left_CTRL_02/Left_CTRL_03
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02
+        weight: 1
+      - path: Root_CTRL_01/Right_CTRL_01/Right_CTRL_02/Right_CTRL_03
+        weight: 1
+      - path: Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.15
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

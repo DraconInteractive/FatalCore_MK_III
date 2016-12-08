@@ -1,0 +1,23 @@
+Golem Animation by Frames
+
+Idle		000-100
+
+Forward		120-200
+Movment
+
+Idle to 	101-119
+Forward
+
+Strafe		220-300
+Left
+
+Idle to		201-219
+Left
+
+Idle to		301-319
+Right
+
+Strafe		320-400
+Right
+
+Attack		401-480

@@ -14,6 +14,8 @@ public class AI_Tower_Script : MonoBehaviour {
 
 	float currentHealth;
 	public float maxHealth;
+
+	public Animator anim;
 	// Use this for initialization
 	void Start () {
 		turretPoint = transform.GetChild (0).gameObject;

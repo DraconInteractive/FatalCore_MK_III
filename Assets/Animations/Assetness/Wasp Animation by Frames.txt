@@ -1,0 +1,7 @@
+Wasp Animation by Frames
+
+Idle		000-039
+
+Forward		040-079
+
+Attack		080-119
