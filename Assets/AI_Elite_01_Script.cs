@@ -18,10 +18,13 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	Golem_Attack_Behaviour gab;
 	public GameObject bulletTemplate;
 	public Golem_Laser laser;
+
+	public GameObject deathElite;
 	// Use this for initialization
 	void Awake () {
 //		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
 		gab = anim.GetBehaviour<Golem_Attack_Behaviour> ();
+		print ("Gab retrieved: " + gab == null);
 		gab.elite = this.gameObject.GetComponent<AI_Elite_01_Script> ();;
 
 	}
@@ -110,7 +113,10 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 		if (currentHealth < 0) {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
+			Instantiate (deathElite, transform.position, transform.rotation);
 			Destroy (this.gameObject);
 		}
 	}
+
+
 }

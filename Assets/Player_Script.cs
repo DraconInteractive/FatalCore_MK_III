@@ -79,6 +79,8 @@ public class Player_Script : MonoBehaviour {
 
 	public StudioEventEmitter fmodMovementEmitter;
 
+	public GatlingLaserScript gatLeftLaser, gatRightLaser;
+
 	void Awake () {
 		playerObj = this.gameObject;
 		rb = gameObject.GetComponent<Rigidbody> ();
@@ -122,7 +124,7 @@ public class Player_Script : MonoBehaviour {
 	void Start () {
 //		mb = Camera.main.GetComponent<MotionBlur> ();
 		ChoosePrimary (weaponTypes.GATLING);
-		ChooseSecondary (weaponTypes.RAIL);
+		ChooseSecondary (weaponTypes.GATLING);
 		playerHasControl = true;
 		health = 100;
 		shield = 100;
@@ -193,11 +195,11 @@ public class Player_Script : MonoBehaviour {
 	}
 	#endregion
 
-	void OnDrawGizmos () {
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
-		Gizmos.DrawWireCube(secondaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
-	}
+//	void OnDrawGizmos () {
+//		Gizmos.color = Color.red;
+//		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
+//		Gizmos.DrawWireCube(secondaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
+//	}
 	#region locomotion
 	private void PlayerMovement () {
 		Vector3 moveX = transform.right * Input.GetAxis("Horizontal") * horizontalSpeed;
@@ -485,14 +487,16 @@ public class Player_Script : MonoBehaviour {
 			{
 			case weaponTypes.GATLING:
 				primaryTimer = gatlingCool - gatMod.fireRateMod;
-				GameObject gatlingBullet = Instantiate (gatlingBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
-				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - gatlingSpread, targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - gatlingSpread, targetPosition.y + gatlingSpread), Random.Range (targetPosition.z - gatlingSpread, targetPosition.z + gatlingSpread));
-				gatlingBullet.transform.LookAt (bulletTarget);
-				Rigidbody gRB = gatlingBullet.GetComponent<Rigidbody> ();
-				gRB.velocity = rb.velocity;
-				gRB.AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
-				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
-				primaryHeat += 1.5f;
+//				GameObject gatlingBullet = Instantiate (gatlingBulletTemplate, primaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
+//				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - gatlingSpread, targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - gatlingSpread, targetPosition.y + gatlingSpread), Random.Range (targetPosition.z - gatlingSpread, targetPosition.z + gatlingSpread));
+//				gatlingBullet.transform.LookAt (bulletTarget);
+//				Rigidbody gRB = gatlingBullet.GetComponent<Rigidbody> ();
+//				gRB.velocity = rb.velocity;
+//				gRB.AddForce (gatlingBullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
+//				gatlingBullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
+				gatLeftLaser.StopCoroutine ("FireLaser");
+				gatLeftLaser.StartCoroutine ("FireLaser");
+				primaryHeat += 1.0f;
 				leftGatAnim.SetBool ("firing", true);
 			
 				break;
@@ -563,13 +567,15 @@ public class Player_Script : MonoBehaviour {
 			{
 			case weaponTypes.GATLING:
 				secondaryTimer = gatlingCool - gatMod.fireRateMod;
-				GameObject bullet = Instantiate (gatlingBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
-				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.y + gatlingSpread), targetPosition.z);
-				bullet.transform.LookAt (bulletTarget);
-				Rigidbody gRB = bullet.GetComponent<Rigidbody> ();
-				gRB.velocity = rb.velocity;
-				gRB.AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
-				bullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
+//				GameObject bullet = Instantiate (gatlingBulletTemplate, secondaryPoint.transform.position + transform.forward * 1.0f, Quaternion.identity) as GameObject;
+//				Vector3 bulletTarget = new Vector3 (Random.Range (targetPosition.x - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.x + gatlingSpread), Random.Range (targetPosition.y - (gatlingSpread + (gatlingSpread * 0.1f)), targetPosition.y + gatlingSpread), targetPosition.z);
+//				bullet.transform.LookAt (bulletTarget);
+//				Rigidbody gRB = bullet.GetComponent<Rigidbody> ();
+//				gRB.velocity = rb.velocity;
+//				gRB.AddForce (bullet.transform.forward * gatlingBulletForce, ForceMode.Impulse);
+//				bullet.GetComponent<BulletScript> ().damage += (int)gatMod.damageMod;
+				gatRightLaser.StopCoroutine ("FireLaser");
+				gatRightLaser.StartCoroutine ("FireLaser");
 				secondaryHeat += 1;
 
 				rightGatAnim.SetBool ("firing", true);

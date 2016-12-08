@@ -134,12 +134,12 @@ public class Swarm_Script_02 : MonoBehaviour {
 				if (Physics.Raycast (transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity)) {
 					if (hit.collider.gameObject == player) {
 						GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
-						bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 10, ForceMode.VelocityChange);
+						bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 50, ForceMode.VelocityChange);
 
 					}
 				}
 			}
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds (1.5f);
 		}
 	}
 
