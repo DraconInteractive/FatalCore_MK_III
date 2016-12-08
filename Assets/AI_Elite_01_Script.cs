@@ -5,7 +5,8 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	GameObject player;
 	Rigidbody rb;
 	public float detectionRange, firingRange, avoidanceRange;
-	bool playerDetected, attacking;
+	bool playerDetected;
+	public bool attacking;
 	float playerDistance;
 	public float baseSpeed;
 	float speed;
@@ -14,7 +15,16 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	public int currentShield, maxShield;
 
 	public Animator anim;
+	Golem_Attack_Behaviour gab;
+	public GameObject bulletTemplate;
+	public Golem_Laser laser;
 	// Use this for initialization
+	void Awake () {
+//		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
+		gab = anim.GetBehaviour<Golem_Attack_Behaviour> ();
+		gab.elite = this.gameObject.GetComponent<AI_Elite_01_Script> ();;
+
+	}
 	void Start () {
 		player = Player_Script.playerObj;
 		rb = GetComponent<Rigidbody> ();
@@ -74,11 +84,18 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	}
 
 	void Combat () {
-		if (playerDetected && playerDistance < firingRange) {
-			
+		if (playerDetected && playerDistance < firingRange && !attacking) {
+			attacking = true;
+			anim.SetTrigger ("Attack");
+//			GameObject bullet = Instantiate (bulletTemplate, transform.position, transform.rotation) as GameObject;
+//			bullet.transform.LookAt (player.transform.position);
+//			bullet.GetComponent<Rigidbody> ().AddForce (transform.forward * 10, ForceMode.Impulse);
+			laser.StopCoroutine ("FireLaser");
+			laser.StartCoroutine ("FireLaser");
+
 		}
 	}
-
+		
 	public void DamageAI (int amount) {
 		if (currentShield > 0) {
 			currentShield -= amount;

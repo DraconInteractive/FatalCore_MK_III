@@ -52,6 +52,9 @@ public class BulletScript : MonoBehaviour {
 		case "Elite":
 			g.GetComponent<AI_Elite_01_Script> ().DamageAI (damage);
 			break;
+		case "EliteChild":
+			g.GetComponent<Golem_Child_Collider_Script> ().PassDamage (damage);
+			break;
 		case "Tower":
 			g.GetComponent<AI_Tower_Script> ().DamageAI (damage);
 			break;
