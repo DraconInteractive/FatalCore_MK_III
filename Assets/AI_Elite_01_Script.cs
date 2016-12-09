@@ -21,6 +21,8 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 	public GameObject deathElite;
 	// Use this for initialization
+
+	bool dead;
 	void Awake () {
 //		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
 		gab = anim.GetBehaviour<Golem_Attack_Behaviour> ();
@@ -113,8 +115,14 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 		if (currentHealth < 0) {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
-			Instantiate (deathElite, transform.position, transform.rotation);
-			Destroy (this.gameObject);
+			if (!dead) {
+				dead = true;
+				GameObject g = Instantiate (deathElite, transform.position, transform.rotation) as GameObject;
+				//			g.GetComponent<Rigidbody> ().velocity = rb.velocity;
+				Destroy (this.gameObject);
+			}
+
+
 		}
 	}
 

@@ -5,6 +5,8 @@ public class Golem_Death_Script : MonoBehaviour {
 	public GameObject[] children;
 	private Rigidbody[] childbodies;
 	private Material[] childmats;
+
+	public float deathForce, upMod, forwardMod;
 	// Use this for initialization
 	void Start () {
 		childbodies = new Rigidbody[children.Length];
@@ -13,7 +15,7 @@ public class Golem_Death_Script : MonoBehaviour {
 			childbodies [i] = children [i].GetComponent<Rigidbody> ();
 		}
 		foreach (Rigidbody r in childbodies) {
-			r.AddExplosionForce (10, transform.position + transform.forward, 25, 0, ForceMode.Impulse);
+			r.AddExplosionForce (deathForce, transform.position + transform.forward * forwardMod, 10, upMod, ForceMode.Impulse);
 		}
 	}
 	

@@ -34,6 +34,8 @@ public class Swarm_Script_02 : MonoBehaviour {
 	float currentHealth;
 	public float maxHealth;
 
+	bool dead;
+
 	public GameObject deadSwarm;
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
@@ -150,8 +152,14 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 		if (currentHealth < 0) {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
-			Instantiate (deadSwarm, transform.position, transform.rotation);
-			Destroy (this.gameObject);
+			if (!dead) {
+				print ("Wasp Dead");
+				dead = true;
+				GameObject g = Instantiate (deadSwarm, transform.position, transform.rotation) as GameObject;
+				//g.GetComponent<Rigidbody> ().velocity = rb.velocity;
+				Destroy (this.gameObject);
+			}
+
 		}
 
 
