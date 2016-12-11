@@ -26,7 +26,6 @@ public class Player_Script : MonoBehaviour {
 
 	public GameObject[] allEnemies;
 	private int totalEnemies;
-//	private MotionBlur mb;
 
 	private bool playerHasControl;
 
@@ -79,6 +78,12 @@ public class Player_Script : MonoBehaviour {
 
 	public StudioEventEmitter fmodMovementEmitter;
 
+	[EventRef]
+	public string weaponSound;
+
+	public FMOD.Studio.EventInstance gatInst, railInst, shotInst, sawInst;
+	public FMOD.Studio.EventInstance primarySound, secondarySound;
+
 	public GatlingLaserScript gatLeftLaser, gatRightLaser;
 	public RailLaserScript railLeftLaser, railRightLaser;
 
@@ -119,6 +124,7 @@ public class Player_Script : MonoBehaviour {
 		sShotButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SHOT));
 		sSawButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
 
+
 	}
 
 	// Use this for initialization
@@ -132,6 +138,38 @@ public class Player_Script : MonoBehaviour {
 		allEnemies = DetectEnemies ();
 		Invoke ("ConstructEnemyCounter", 0.5f);
 		DamagePlayer (0);
+
+
+		gatInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		gatInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (gatInst, transform, rb);
+		gatInst.setParameterValue ("Weapon Select", 2);
+
+		railInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		railInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (railInst, transform, rb);
+		railInst.setParameterValue ("Weapon Select", 4);
+
+		shotInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		shotInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (shotInst, transform, rb);
+		shotInst.setParameterValue ("Weapon Select", 3);
+
+		sawInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		sawInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (sawInst, transform, rb);
+		sawInst.setParameterValue ("Weapon Select", 1);
+
+
+//		railInst.start ();
+		primarySound = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (primarySound, transform, rb);
+		primarySound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+
+		secondarySound = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (secondarySound, transform, rb);
+		secondarySound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
+
 //		print ("rightGat: " + rightGatAnim.avatar.isValid);
 //		print ("leftGat: " + leftGatAnim.avatar.isValid);
 //		print ("rightRail: " + rightRailAnim.avatar.isValid);
@@ -344,7 +382,7 @@ public class Player_Script : MonoBehaviour {
 			
 			leftSawGO.SetActive (false);
 			
-
+//			primarySound.setParameterValue ("Weapon Select", 2);
 			break;
 		case weaponTypes.RAIL:
 			pRailButton.interactable = false;
@@ -362,7 +400,9 @@ public class Player_Script : MonoBehaviour {
 			leftShotGO.SetActive (false);
 			
 			leftSawGO.SetActive (false);
-			
+
+//			primarySound.setParameterValue ("Weapon Select", 4);
+
 			break;
 		case weaponTypes.SHOT:
 			pShotButton.interactable = false;
@@ -379,7 +419,9 @@ public class Player_Script : MonoBehaviour {
 			leftRailGO.SetActive (false);
 			
 			leftSawGO.SetActive (false);
-			
+
+//			primarySound.setParameterValue ("Weapon Select", 3);
+
 			break;
 		case weaponTypes.SAW:
 			pSawButton.interactable = false;
@@ -396,7 +438,9 @@ public class Player_Script : MonoBehaviour {
 			leftRailGO.SetActive (false);
 			
 			leftShotGO.SetActive (false);
-			
+
+//			primarySound.setParameterValue ("Weapon Select", 1);
+
 			break;
 		}
 	}
@@ -421,6 +465,7 @@ public class Player_Script : MonoBehaviour {
 			
 			rightSawGO.SetActive (false);
 			
+//			secondarySound.setParameterValue ("Weapon Select", 2);
 
 			break;
 		case weaponTypes.RAIL:
@@ -438,6 +483,7 @@ public class Player_Script : MonoBehaviour {
 			
 			rightSawGO.SetActive (false);
 		
+//			secondarySound.setParameterValue ("Weapon Select", 4);
 
 			break;
 		case weaponTypes.SHOT:
@@ -456,6 +502,7 @@ public class Player_Script : MonoBehaviour {
 			
 			rightSawGO.SetActive (false);
 			
+//			secondarySound.setParameterValue ("Weapon Select", 3);
 
 			break;
 		case weaponTypes.SAW:
@@ -474,6 +521,8 @@ public class Player_Script : MonoBehaviour {
 			rightShotGO.SetActive (false);
 			
 			rightRailGO.SetActive (false);
+
+//			secondarySound.setParameterValue ("Weapon Select", 1);
 
 			break;
 		}
@@ -499,7 +548,8 @@ public class Player_Script : MonoBehaviour {
 				gatLeftLaser.StartCoroutine ("FireLaser");
 				primaryHeat += 1.0f;
 				leftGatAnim.SetBool ("firing", true);
-			
+				StartCoroutine (GatlingSoundFire (0));
+
 				break;
 			case weaponTypes.RAIL:
 				primaryTimer = railCool - railMod.fireRateMod;
@@ -514,7 +564,9 @@ public class Player_Script : MonoBehaviour {
 				railLeftLaser.StartCoroutine ("FireLaser");
 				primaryHeat += 15;
 				leftRailAnim.SetTrigger ("Fire");
-			
+
+				StartCoroutine (RailSoundFire (0));
+
 				break;
 			case weaponTypes.SHOT:
 				primaryTimer = shotCool - shotMod.fireRateMod;
@@ -533,7 +585,8 @@ public class Player_Script : MonoBehaviour {
 
 				primaryHeat += 30;
 				leftShotAnim.SetBool ("firing", true);
-		
+
+				StartCoroutine (ShotgunSoundFire (0));
 				break;
 			case weaponTypes.SAW:
 				primaryTimer = sawCool - sawMod.fireRateMod;
@@ -555,7 +608,7 @@ public class Player_Script : MonoBehaviour {
 				}
 
 				leftSawAnim.SetBool ("firing", true);
-
+				StartCoroutine (DrillSoundFire (0));
 				break;
 			}
 
@@ -583,6 +636,7 @@ public class Player_Script : MonoBehaviour {
 				secondaryHeat += 1;
 
 				rightGatAnim.SetBool ("firing", true);
+				StartCoroutine (GatlingSoundFire (1));
 				break;
 			case weaponTypes.RAIL:
 				secondaryTimer = railCool - railMod.fireRateMod;
@@ -598,15 +652,15 @@ public class Player_Script : MonoBehaviour {
 				secondaryHeat += 15;
 
 				rightRailAnim.SetTrigger ("Fire");
-
+				StartCoroutine (RailSoundFire (1));
 				break;
 			case weaponTypes.SHOT:
 				secondaryTimer = shotCool - shotMod.fireRateMod;
 				float forwardOffset = 0.5f;
 				int i = 0;
-				for (i = 0; i < shotCount; i++){
+				for (i = 0; i < shotCount; i++) {
 					GameObject shot = Instantiate (shotBulletTemplate, secondaryPoint.transform.position + transform.forward * forwardOffset, Quaternion.identity) as GameObject;
-					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range(targetPosition.z - shotSpread, targetPosition.z + shotSpread));
+					Vector3 shotBulletTarget = new Vector3 (Random.Range (targetPosition.x - shotSpread, targetPosition.x + shotSpread), Random.Range (targetPosition.y - shotSpread, targetPosition.y + shotSpread), Random.Range (targetPosition.z - shotSpread, targetPosition.z + shotSpread));
 					shot.transform.LookAt (shotBulletTarget);
 					Rigidbody sRB = shot.GetComponent<Rigidbody> ();
 					sRB.velocity = rb.velocity;
@@ -618,27 +672,95 @@ public class Player_Script : MonoBehaviour {
 				secondaryHeat += 30;
 
 				rightShotAnim.SetBool ("firing", true);
+				StartCoroutine (ShotgunSoundFire (1));
 				break;
 			case weaponTypes.SAW:
 				secondaryTimer = sawCool - sawMod.fireRateMod;
-				Collider[] boxCol = Physics.OverlapBox (secondaryPoint.transform.position + (transform.forward * 2), new Vector3(sawReach / 2, sawReach / 2, sawReach / 2));
+				Collider[] boxCol = Physics.OverlapBox (secondaryPoint.transform.position + (transform.forward * 2), new Vector3 (sawReach / 2, sawReach / 2, sawReach / 2));
 
 
-				foreach (Collider c in boxCol){
-					if (c.gameObject.tag == "Enemy"){
-						if (c.gameObject.GetComponent<Swarm_Script_02>()) {
+				foreach (Collider c in boxCol) {
+					if (c.gameObject.tag == "Enemy") {
+						if (c.gameObject.GetComponent<Swarm_Script_02> ()) {
 							c.gameObject.GetComponent<Swarm_Script_02> ().DamageAI (sawDamage + (int)sawMod.damageMod);
 						}
-						if (c.gameObject.GetComponent<AI_Tower_Script>()) {
-							c.gameObject.GetComponent<AI_Tower_Script> ().DamageAI(sawDamage + (int)sawMod.damageMod);
+						if (c.gameObject.GetComponent<AI_Tower_Script> ()) {
+							c.gameObject.GetComponent<AI_Tower_Script> ().DamageAI (sawDamage + (int)sawMod.damageMod);
 						}
 					}
 				}
 
 				rightSawAnim.SetBool ("firing", true);
+				StartCoroutine (DrillSoundFire (1));
 				break;
 			}
 		}
+	}
+
+	IEnumerator RailSoundFire (int gun) {
+		yield return new WaitForSeconds (1);
+
+//		railInst.start ();
+//		railInst.setParameterValue ("Weapon Select", 4);
+		if (gun == 0) {
+			primarySound.setParameterValue ("Weapon Select", 4.1f);
+			primarySound.start ();
+		} else {
+			secondarySound.setParameterValue ("Weapon Select", 4.1f);
+			secondarySound.start ();
+		}
+		yield break;
+	}
+
+	IEnumerator GatlingSoundFire (int gun) {
+		if (gun == 0) {
+			primarySound.setParameterValue ("Weapon Select", 2.1f);
+			primarySound.start ();
+		} else {
+			secondarySound.setParameterValue ("Weapon Select", 2.1f);
+			secondarySound.start ();
+		}
+		yield return new WaitForSeconds (gatlingCool - 0.01f);
+		if (gun == 0) {
+			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		} else {
+			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		}
+		yield break;
+	}
+
+	IEnumerator ShotgunSoundFire (int gun) {
+		if (gun == 0) {
+			primarySound.setParameterValue ("Weapon Select", 3.1f);
+			primarySound.start ();
+		} else {
+			secondarySound.setParameterValue ("Weapon Select", 3.1f);
+			secondarySound.start ();
+		}
+		yield return new WaitForSeconds (shotCool - 0.01f);
+		if (gun == 0) {
+			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		} else {
+			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		}
+		yield break;
+	}
+
+	IEnumerator DrillSoundFire (int gun) {
+		if (gun == 0) {
+			primarySound.setParameterValue ("Weapon Select", 1.1f);
+			primarySound.start ();
+		} else {
+			secondarySound.setParameterValue ("Weapon Select", 1.1f);
+			secondarySound.start ();
+		}
+		yield return new WaitForSeconds (sawCool - 0.01f);
+		if (gun == 0) {
+			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		} else {
+			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+		}
+		yield break;
 	}
 	#endregion
 

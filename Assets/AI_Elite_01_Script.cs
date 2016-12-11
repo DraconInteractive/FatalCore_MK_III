@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using FMODUnity;
+using FMOD;
 using System.Collections;
 
 public class AI_Elite_01_Script : MonoBehaviour {
@@ -23,6 +25,10 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	// Use this for initialization
 
 	bool dead;
+
+//	[EventRef]
+//	public string movementSound;
+//	FMOD.Studio.EventInstance movementEventRef;
 	void Awake () {
 //		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
 		gab = anim.GetBehaviour<Golem_Attack_Behaviour> ();
@@ -36,6 +42,14 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 		currentHealth = maxHealth;
 		currentShield = maxShield;
+
+//		movementEventRef = FMODUnity.RuntimeManager.CreateInstance (movementSound);
+//		FMODUnity.RuntimeManager.AttachInstanceToGameObject (movementEventRef, this.gameObject.transform, rb);
+//		movementEventRef.start ();
+//		movementEventRef.setVolume (2);
+//		float x = 0;
+//		movementEventRef.getVolume (out x);
+//		print (x);
 	}
 	
 	// Update is called once per frame
@@ -45,6 +59,7 @@ public class AI_Elite_01_Script : MonoBehaviour {
 		MovementAndRotation ();
 		Combat ();
 		UpdateAnim ();
+		UpdateSound ();
 	}
 
 	void OnDrawGizmos () {
@@ -59,6 +74,10 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	void UpdateAnim () {
 		anim.SetFloat ("forwardVelocity", rb.velocity.z);
 		anim.SetFloat ("rightVelocity", rb.velocity.x);
+	}
+
+	void UpdateSound () {
+		
 	}
 	void GetPlayerDistance () {
 		playerDistance = Vector3.Distance (transform.position, player.transform.position);
@@ -117,8 +136,9 @@ public class AI_Elite_01_Script : MonoBehaviour {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
 			if (!dead) {
 				dead = true;
-				GameObject g = Instantiate (deathElite, transform.position, transform.rotation) as GameObject;
+//				GameObject g = Instantiate (deathElite, transform.position, transform.rotation) as GameObject;
 				//			g.GetComponent<Rigidbody> ().velocity = rb.velocity;
+				Instantiate (deathElite, transform.position, transform.rotation);
 				Destroy (this.gameObject);
 			}
 

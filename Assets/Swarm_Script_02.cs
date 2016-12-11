@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using FMOD;
+using FMODUnity; 
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,6 +39,16 @@ public class Swarm_Script_02 : MonoBehaviour {
 	bool dead;
 
 	public GameObject deadSwarm;
+
+	[EventRef]
+	public string movementEventRef;
+
+	FMOD.Studio.EventInstance movementInst;
+//	FMOD_StudioEventEmitter movementEmitter;
+
+//	[FMODUnity.EventRef]
+//	public string movementEvent;
+//	public FMOD.Studio.EventInstance movementInstance;
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
@@ -62,7 +74,24 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 		StartCoroutine (DoSwarm ());
 		StartCoroutine (FireUpdate ());
+
+		movementInst = FMODUnity.RuntimeManager.CreateInstance (movementEventRef);
+//		FMODUnity.RuntimeManager.AttachInstanceToGameObject (movementInst, transform, rb);
+		RuntimeManager.AttachInstanceToGameObject (movementInst, gameObject.transform, rb);
+		movementInst.setVolume (10);
+		movementInst.start ();
+//		movementInstance = FMODUnity.RuntimeManager.CreateInstance (movementEvent);
+//		FMODUnity.RuntimeManager.AttachInstanceToGameObject (movementInstance, this.gameObject.transform, rb);
+//		movementInstance.start ();
+//		RESULT Sound.set3DMinMaxDistance (1, 10000);
+//		RESULT movementEmitter.Sound.set3DMinMaxDistance(1,10000;)
+
+
 	}
+
+
+		
+	
 	
 	// Update is called once per frame
 //	void Update () {
@@ -71,7 +100,7 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	void DoSeperateAndCohesion () {
 		Vector3 swarmDirection = Vector3.zero;
-		Vector3 closestSwarmerDirection = Vector3.zero;
+//		Vector3 closestSwarmerDirection = Vector3.zero;
 		Vector3 swarmCenter = Vector3.zero;
 
 		float shortestDistance = Mathf.Infinity;
@@ -155,8 +184,9 @@ public class Swarm_Script_02 : MonoBehaviour {
 			if (!dead) {
 				print ("Wasp Dead");
 				dead = true;
-				GameObject g = Instantiate (deadSwarm, transform.position, transform.rotation) as GameObject;
+//				GameObject g = Instantiate (deadSwarm, transform.position, transform.rotation) as GameObject;
 				//g.GetComponent<Rigidbody> ().velocity = rb.velocity;
+				Instantiate (deadSwarm, transform.position, transform.rotation);
 				Destroy (this.gameObject);
 			}
 

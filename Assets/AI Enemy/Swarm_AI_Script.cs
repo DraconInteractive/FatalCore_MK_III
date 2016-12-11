@@ -67,7 +67,7 @@ public class Swarm_AI_Script : MonoBehaviour {
 	private void DoSeperationAndCohesion () {
 
 		Vector3 swarmDirection = Vector3.zero;
-		Vector3 closestSwarmerDirection = Vector3.zero;
+//		Vector3 closestSwarmerDirection = Vector3.zero;
 		Vector3 swarmCenter = Vector3.zero;
 
 		float shortestDistance = Mathf.Infinity;
