@@ -78,21 +78,22 @@ public class Player_Script : MonoBehaviour {
 
 	public StudioEventEmitter fmodMovementEmitter;
 
-	[EventRef]
-	public string weaponSound;
-
-	public FMOD.Studio.EventInstance gatInst, railInst, shotInst, sawInst;
-	public FMOD.Studio.EventInstance primarySound, secondarySound;
-
 	public GatlingLaserScript gatLeftLaser, gatRightLaser;
 	public RailLaserScript railLeftLaser, railRightLaser;
+
+	public AudioClip gatClip, railClip, shotClip, sawClip;
+	public AudioClip shieldDamageClip, hullDamageClip;
+	public AudioClip deathClip;
+
+	public AudioSource pWAS, sWAS, dadAS;
 
 	void Awake () {
 		playerObj = this.gameObject;
 		rb = gameObject.GetComponent<Rigidbody> ();
 		ag = Camera.main.gameObject.GetComponent<AnalogGlitch> ();
 		dg = Camera.main.gameObject.GetComponent<DigitalGlitch> ();
-
+//		weaponAS.enabled = false;
+//		dadAS.enabled = false;
 		speedMult = 1;
 		boostSlider.minValue = 0;
 		boostSlider.maxValue = boostTimeMax;
@@ -137,40 +138,10 @@ public class Player_Script : MonoBehaviour {
 		shield = 100;
 		allEnemies = DetectEnemies ();
 		Invoke ("ConstructEnemyCounter", 0.5f);
+
 		DamagePlayer (0);
-
-
-		gatInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		gatInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (gatInst, transform, rb);
-		gatInst.setParameterValue ("Weapon Select", 2);
-
-		railInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		railInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (railInst, transform, rb);
-		railInst.setParameterValue ("Weapon Select", 4);
-
-		shotInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		shotInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (shotInst, transform, rb);
-		shotInst.setParameterValue ("Weapon Select", 3);
-
-		sawInst = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		sawInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (sawInst, transform, rb);
-		sawInst.setParameterValue ("Weapon Select", 1);
-
-
-//		railInst.start ();
-		primarySound = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (primarySound, transform, rb);
-		primarySound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-
-		secondarySound = FMODUnity.RuntimeManager.CreateInstance (weaponSound);
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (secondarySound, transform, rb);
-		secondarySound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject, rb));
-
-//		print ("rightGat: " + rightGatAnim.avatar.isValid);
+	
+		//		print ("rightGat: " + rightGatAnim.avatar.isValid);
 //		print ("leftGat: " + leftGatAnim.avatar.isValid);
 //		print ("rightRail: " + rightRailAnim.avatar.isValid);
 //		print ("leftRail: " + leftRailAnim.avatar.isValid);
@@ -194,7 +165,6 @@ public class Player_Script : MonoBehaviour {
 		if (playerHasControl){
 			PlayerMovement();
 			CameraRotation ();
-
 		}
 	}
 
@@ -202,6 +172,7 @@ public class Player_Script : MonoBehaviour {
 		ag = Camera.main.GetComponent<AnalogGlitch> ();
 		dg = Camera.main.GetComponent<DigitalGlitch> ();
 	}
+
 	#region EnemyFunctions
 	private void ConstructEnemyCounter () {
 		totalEnemies = allEnemies.Length;
@@ -239,6 +210,7 @@ public class Player_Script : MonoBehaviour {
 //		Gizmos.DrawWireCube(primaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
 //		Gizmos.DrawWireCube(secondaryPoint.transform.position + transform.forward, new Vector3(sawReach, sawReach, sawReach));
 //	}
+
 	#region locomotion
 	private void PlayerMovement () {
 		Vector3 moveX = transform.right * Input.GetAxis("Horizontal") * horizontalSpeed;
@@ -699,66 +671,61 @@ public class Player_Script : MonoBehaviour {
 
 	IEnumerator RailSoundFire (int gun) {
 		yield return new WaitForSeconds (1);
-
-//		railInst.start ();
-//		railInst.setParameterValue ("Weapon Select", 4);
 		if (gun == 0) {
-			primarySound.setParameterValue ("Weapon Select", 4.1f);
-			primarySound.start ();
+			pWAS.clip = railClip;
+			pWAS.Play ();
 		} else {
-			secondarySound.setParameterValue ("Weapon Select", 4.1f);
-			secondarySound.start ();
+			sWAS.clip = railClip;
+			sWAS.Play ();
 		}
+		pWAS.clip = railClip;
+		pWAS.Play ();
 		yield break;
 	}
 
 	IEnumerator GatlingSoundFire (int gun) {
 		if (gun == 0) {
-			primarySound.setParameterValue ("Weapon Select", 2.1f);
-			primarySound.start ();
+			pWAS.clip = gatClip;
+			pWAS.Play ();
 		} else {
-			secondarySound.setParameterValue ("Weapon Select", 2.1f);
-			secondarySound.start ();
+			sWAS.clip = gatClip;
+			sWAS.Play ();
 		}
+
 		yield return new WaitForSeconds (gatlingCool - 0.01f);
 		if (gun == 0) {
-			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
+			pWAS.Stop ();
 		} else {
-			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+			sWAS.Stop ();
 		}
 		yield break;
 	}
 
 	IEnumerator ShotgunSoundFire (int gun) {
 		if (gun == 0) {
-			primarySound.setParameterValue ("Weapon Select", 3.1f);
-			primarySound.start ();
+			pWAS.clip = shotClip;
+			pWAS.Play ();
 		} else {
-			secondarySound.setParameterValue ("Weapon Select", 3.1f);
-			secondarySound.start ();
-		}
-		yield return new WaitForSeconds (shotCool - 0.01f);
-		if (gun == 0) {
-			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
-		} else {
-			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+			sWAS.clip = shotClip;
+			sWAS.Stop ();
 		}
 		yield break;
 	}
 
 	IEnumerator DrillSoundFire (int gun) {
 		if (gun == 0) {
-			primarySound.setParameterValue ("Weapon Select", 1.1f);
-			primarySound.start ();
+			pWAS.clip = sawClip;
+			pWAS.Play ();
 		} else {
-			secondarySound.setParameterValue ("Weapon Select", 1.1f);
-			secondarySound.start ();
+			sWAS.clip = sawClip;
+			sWAS.Play ();
 		}
+
 		yield return new WaitForSeconds (sawCool - 0.01f);
 		if (gun == 0) {
-			primarySound.stop (STOP_MODE.ALLOWFADEOUT);
+			pWAS.Stop ();
 		} else {
-			secondarySound.stop (STOP_MODE.ALLOWFADEOUT);
+			sWAS.Stop ();
 		}
 		yield break;
 	}
@@ -812,6 +779,8 @@ public class Player_Script : MonoBehaviour {
 
 			Time.timeScale = 1;
 		}
+
+		DamagePlayer (0);
 	}
 
 	private void ToggleHomeBound(){
@@ -829,13 +798,15 @@ public class Player_Script : MonoBehaviour {
 		if (!effectActive) {
 			StartCoroutine (PlayerDamageEffect ());
 		}
-
+		bool s;
 		if (shield > 0) {
 			shield -= damage;
+			s = true;
 		} else {
 			health -= damage;
+			s = false;
 		}
-
+			
 		if (shield < 0) {
 			health -= (0 - shield);
 			shield = 0;
@@ -847,8 +818,19 @@ public class Player_Script : MonoBehaviour {
 
 		healthSlider.value = health;
 		shieldSlider.value = shield;
+
+		StartCoroutine (DamageSoundFire (s));
 	}
-		
+
+	IEnumerator DamageSoundFire (bool shield) {
+		if (shield) {
+			dadAS.clip = shieldDamageClip;
+		} else {
+			dadAS.clip = hullDamageClip;
+		}
+		dadAS.Play ();
+		yield break;
+	}
 	IEnumerator PlayerDamageEffect () {
 		effectActive = true;
 		print ("DEActive");
@@ -862,6 +844,8 @@ public class Player_Script : MonoBehaviour {
 	}
 
 	IEnumerator PlayerDeath () {
+		dadAS.clip = deathClip;
+		dadAS.Play ();
 		while (dg.intensity < 1) {
 			dg.intensity += 0.1f;
 			yield return new WaitForSeconds (0.1f);
