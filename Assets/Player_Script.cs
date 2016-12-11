@@ -81,11 +81,14 @@ public class Player_Script : MonoBehaviour {
 	public GatlingLaserScript gatLeftLaser, gatRightLaser;
 	public RailLaserScript railLeftLaser, railRightLaser;
 
+	//Audio
 	public AudioClip gatClip, railClip, shotClip, sawClip;
 	public AudioClip shieldDamageClip, hullDamageClip;
 	public AudioClip deathClip;
 
 	public AudioSource pWAS, sWAS, dadAS;
+	private AudioSource musicAS;
+	public AudioClip L1AC, L2AC, L3AC, L4AC, menuAC;
 
 	void Awake () {
 		playerObj = this.gameObject;
@@ -124,8 +127,6 @@ public class Player_Script : MonoBehaviour {
 		sRailButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.RAIL));
 		sShotButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SHOT));
 		sSawButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
-
-
 	}
 
 	// Use this for initialization
@@ -140,6 +141,27 @@ public class Player_Script : MonoBehaviour {
 		Invoke ("ConstructEnemyCounter", 0.5f);
 
 		DamagePlayer (0);
+		musicAS = GetComponent<AudioSource> ();
+		switch (SceneManager.GetActiveScene().name)
+		{
+		case "menutest":
+			musicAS.clip = menuAC;
+			break;
+		case "Level 1 Jamo":
+			musicAS.clip = L1AC;
+			break;
+		case "Level 2 Testing":
+			musicAS.clip = L2AC;
+			break;
+		case "Level 3":
+			musicAS.clip = L3AC;
+			break;
+		case "Level 4 Boss":
+			musicAS.clip = L4AC;
+			break;
+		}
+
+		musicAS.Play ();
 	
 		//		print ("rightGat: " + rightGatAnim.avatar.isValid);
 //		print ("leftGat: " + leftGatAnim.avatar.isValid);
