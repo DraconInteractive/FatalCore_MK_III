@@ -7,6 +7,7 @@ public class MenuScript : MonoBehaviour {
 	public GameObject mainMenu;
 	public GameObject cheatsMenu;
 	public GameObject startMenu;
+	public GameObject levelSelect;
 
 	public bool startMenuActive;
 
@@ -15,7 +16,9 @@ public class MenuScript : MonoBehaviour {
 		startMenuActive = true;
 		mainMenu.SetActive (false);
 		cheatsMenu.SetActive (false);
+		levelSelect.SetActive (false);
 		startMenu.SetActive (true);
+
 	}
 	
 	// Update is called once per frame
@@ -32,6 +35,7 @@ public class MenuScript : MonoBehaviour {
 		cheatsMenu.SetActive (false);
 		mainMenu.SetActive (true);
 		startMenuActive = false;
+		levelSelect.SetActive (false);
 	}
 
 	public void LoadCheatsMenu(){
@@ -44,10 +48,28 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void StartGame(){
-		SceneManager.LoadScene (1);
+		mainMenu.SetActive (false);
+		levelSelect.SetActive (true);
+
 	}
 
 	public void Quit(){
 		Application.Quit();
+	}
+
+	public void LoadLevel1(){
+		SceneManager.LoadScene (1);
+	}
+
+	public void LoadLevel2(){
+		SceneManager.LoadScene (2);
+	}
+
+	public void LoadLevel3(){
+		SceneManager.LoadScene (3);
+	}
+
+	public void LoadLevel4(){
+		SceneManager.LoadScene (4);
 	}
 }
