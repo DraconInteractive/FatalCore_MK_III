@@ -26,6 +26,10 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 	bool dead;
 
+	public AudioSource weaponAS;
+	public AudioSource movementAS;
+	public AudioSource deathAS;
+
 //	[EventRef]
 //	public string movementSound;
 //	FMOD.Studio.EventInstance movementEventRef;
@@ -59,7 +63,6 @@ public class AI_Elite_01_Script : MonoBehaviour {
 		MovementAndRotation ();
 		Combat ();
 		UpdateAnim ();
-		UpdateSound ();
 	}
 
 	void OnDrawGizmos () {
@@ -75,10 +78,7 @@ public class AI_Elite_01_Script : MonoBehaviour {
 		anim.SetFloat ("forwardVelocity", rb.velocity.z);
 		anim.SetFloat ("rightVelocity", rb.velocity.x);
 	}
-
-	void UpdateSound () {
 		
-	}
 	void GetPlayerDistance () {
 		playerDistance = Vector3.Distance (transform.position, player.transform.position);
 		speed = (playerDistance * baseSpeed) / 10;
@@ -116,10 +116,14 @@ public class AI_Elite_01_Script : MonoBehaviour {
 //			bullet.GetComponent<Rigidbody> ().AddForce (transform.forward * 10, ForceMode.Impulse);
 			laser.StopCoroutine ("FireLaser");
 			laser.StartCoroutine ("FireLaser");
-
+			StartCoroutine (AttackSoundFire ());
 		}
 	}
 		
+	IEnumerator AttackSoundFire () {
+		yield return new WaitForSeconds (0.5f);
+		weaponAS.Play();
+	}
 	public void DamageAI (int amount) {
 		if (currentShield > 0) {
 			currentShield -= amount;
@@ -139,12 +143,13 @@ public class AI_Elite_01_Script : MonoBehaviour {
 //				GameObject g = Instantiate (deathElite, transform.position, transform.rotation) as GameObject;
 				//			g.GetComponent<Rigidbody> ().velocity = rb.velocity;
 				Instantiate (deathElite, transform.position, transform.rotation);
+				deathAS.PlayOneShot (deathAS.clip);
 				Destroy (this.gameObject);
 			}
-
-
 		}
 	}
 
-
+	void DestroyElite () {
+		
+	}
 }

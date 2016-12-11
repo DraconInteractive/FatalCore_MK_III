@@ -707,7 +707,7 @@ public class Player_Script : MonoBehaviour {
 			pWAS.Play ();
 		} else {
 			sWAS.clip = shotClip;
-			sWAS.Stop ();
+			sWAS.Play ();
 		}
 		yield break;
 	}

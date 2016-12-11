@@ -40,15 +40,7 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	public GameObject deadSwarm;
 
-	[EventRef]
-	public string movementEventRef;
-
-	FMOD.Studio.EventInstance movementInst;
-//	FMOD_StudioEventEmitter movementEmitter;
-
-//	[FMODUnity.EventRef]
-//	public string movementEvent;
-//	public FMOD.Studio.EventInstance movementInstance;
+	public AudioSource weaponAS, movementAS, deathAS;
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
@@ -74,19 +66,6 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 		StartCoroutine (DoSwarm ());
 		StartCoroutine (FireUpdate ());
-
-		movementInst = FMODUnity.RuntimeManager.CreateInstance (movementEventRef);
-//		FMODUnity.RuntimeManager.AttachInstanceToGameObject (movementInst, transform, rb);
-		RuntimeManager.AttachInstanceToGameObject (movementInst, gameObject.transform, rb);
-		movementInst.setVolume (10);
-		movementInst.start ();
-//		movementInstance = FMODUnity.RuntimeManager.CreateInstance (movementEvent);
-//		FMODUnity.RuntimeManager.AttachInstanceToGameObject (movementInstance, this.gameObject.transform, rb);
-//		movementInstance.start ();
-//		RESULT Sound.set3DMinMaxDistance (1, 10000);
-//		RESULT movementEmitter.Sound.set3DMinMaxDistance(1,10000;)
-
-
 	}
 
 
@@ -167,11 +146,11 @@ public class Swarm_Script_02 : MonoBehaviour {
 					if (hit.collider.gameObject == player) {
 						GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
 						bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 50, ForceMode.VelocityChange);
-
+						weaponAS.Play ();
 					}
 				}
 			}
-			yield return new WaitForSeconds (1.5f);
+			yield return new WaitForSeconds (1.5f + Random.Range(0.1f, 0.5f));
 		}
 	}
 
@@ -187,6 +166,7 @@ public class Swarm_Script_02 : MonoBehaviour {
 //				GameObject g = Instantiate (deadSwarm, transform.position, transform.rotation) as GameObject;
 				//g.GetComponent<Rigidbody> ().velocity = rb.velocity;
 				Instantiate (deadSwarm, transform.position, transform.rotation);
+				deathAS.PlayOneShot (deathAS.clip);
 				Destroy (this.gameObject);
 			}
 
