@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{4e986c1c-f148-482b-8052-965ea3ce0525}">
+        <property name="assetPath">
+            <value>FATAL_CORE_LVL3_MASTER.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>187.26391666666666</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{edda18ea-bab7-4c5f-8b5c-27f7e7646c14}</destination>
+        </relationship>
+    </object>
+</objects>
