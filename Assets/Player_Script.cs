@@ -57,7 +57,8 @@ public class Player_Script : MonoBehaviour {
 
 	//Inventory
 
-	public GameObject inventoryPanel;
+	public GameObject inventoryPanel, menuPanel;
+	public Button resButton, mainButton, quitButton;
 	public Button pGatButton, pRailButton, pShotButton, pSawButton, sGatButton, sRailButton, sShotButton, sSawButton;
 	private ColorBlock selectedBlock, normalBlock;
 
@@ -127,6 +128,10 @@ public class Player_Script : MonoBehaviour {
 		sRailButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.RAIL));
 		sShotButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SHOT));
 		sSawButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
+
+		resButton.onClick.AddListener (() => ToggleMenu (false));
+		mainButton.onClick.AddListener (() => SceneManager.LoadScene ("menutest"));
+		quitButton.onClick.AddListener (() => Application.Quit ());
 	}
 
 	// Use this for initialization
@@ -150,7 +155,7 @@ public class Player_Script : MonoBehaviour {
 		case "Level 1 Jamo":
 			musicAS.clip = L1AC;
 			break;
-		case "Level 2 Testing":
+		case "Eugene Level 2 Testing":
 			musicAS.clip = L2AC;
 			break;
 		case "Level 3":
@@ -193,6 +198,7 @@ public class Player_Script : MonoBehaviour {
 	void OnEnable () {
 		ag = Camera.main.GetComponent<AnalogGlitch> ();
 		dg = Camera.main.GetComponent<DigitalGlitch> ();
+		Time.timeScale = 1;
 	}
 
 	#region EnemyFunctions
@@ -327,13 +333,17 @@ public class Player_Script : MonoBehaviour {
 			boostActive = false;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)){
-//			UnityEditor.EditorApplication.isPlaying = false;
-			Application.Quit ();
-		}
+//		if (Input.GetKeyDown(KeyCode.Escape)){
+////			UnityEditor.EditorApplication.isPlaying = false;
+//			Application.Quit ();
+//		}
 
 		if (Input.GetKeyDown(KeyCode.I)){
 			ToggleInventory ();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			ToggleMenu (!menuPanel.activeSelf);
 		}
 
 		if (primaryTimer > 0){
@@ -794,15 +804,29 @@ public class Player_Script : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 
-			Time.timeScale = 0.5f;
+			Time.timeScale = 0.25f;
 		} else {
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 
 			Time.timeScale = 1;
 		}
+	}
 
-		DamagePlayer (0);
+	private void ToggleMenu (bool state) {
+		menuPanel.SetActive (state);
+
+		if (state == true){
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+
+			Time.timeScale = 0f;
+		} else {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		
+			Time.timeScale = 1;
+		}
 	}
 
 	private void ToggleHomeBound(){

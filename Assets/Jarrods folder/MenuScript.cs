@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MenuScript : MonoBehaviour {
@@ -8,6 +9,8 @@ public class MenuScript : MonoBehaviour {
 	public GameObject cheatsMenu;
 	public GameObject startMenu;
 	public GameObject levelSelect;
+
+	public Button levelOneButton, levelTwoButton, levelThreeButton, levelFourButton;
 
 	public bool startMenuActive;
 
@@ -18,6 +21,11 @@ public class MenuScript : MonoBehaviour {
 		cheatsMenu.SetActive (false);
 		levelSelect.SetActive (false);
 		startMenu.SetActive (true);
+
+		levelOneButton.onClick.AddListener (() => SceneManager.LoadScene ("Level 1 Jamo"));
+		levelTwoButton.onClick.AddListener (() => SceneManager.LoadScene ("Eugene Level 2 Testing"));
+		levelThreeButton.onClick.AddListener (() => SceneManager.LoadScene("Level 3"));
+		levelFourButton.onClick.AddListener (() => SceneManager.LoadScene("Level 4 Boss"));
 
 	}
 	
