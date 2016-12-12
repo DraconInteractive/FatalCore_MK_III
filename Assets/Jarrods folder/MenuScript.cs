@@ -27,6 +27,7 @@ public class MenuScript : MonoBehaviour {
 		levelThreeButton.onClick.AddListener (() => SceneManager.LoadScene("Level 3"));
 		levelFourButton.onClick.AddListener (() => SceneManager.LoadScene("Level 4 Boss"));
 
+		Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame
