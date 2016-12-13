@@ -30,6 +30,7 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	public AudioSource movementAS;
 	public AudioSource deathAS;
 
+	public bool aggressive;
 //	[EventRef]
 //	public string movementSound;
 //	FMOD.Studio.EventInstance movementEventRef;
@@ -60,8 +61,12 @@ public class AI_Elite_01_Script : MonoBehaviour {
 	void Update () {
 		GetPlayerDistance ();
 		DetectPlayer ();
-		MovementAndRotation ();
-		Combat ();
+
+		if (aggressive) {
+			MovementAndRotation ();
+			Combat ();
+		}
+
 		UpdateAnim ();
 	}
 

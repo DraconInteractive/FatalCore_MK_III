@@ -38,6 +38,8 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	bool dead;
 
+	public bool aggressive;
+
 	public GameObject deadSwarm;
 
 	public AudioSource weaponAS, movementAS, deathAS;
@@ -140,16 +142,19 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 	private IEnumerator FireUpdate () {
 		while (true) {
-			if (Vector3.Distance(player.transform.position, transform.position) < fireRadius) {
-				RaycastHit hit;
-				if (Physics.Raycast (transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity)) {
-					if (hit.collider.gameObject == player) {
-						GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
-						bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 50, ForceMode.VelocityChange);
-						weaponAS.Play ();
+			if (aggressive) {
+				if (Vector3.Distance(player.transform.position, transform.position) < fireRadius) {
+					RaycastHit hit;
+					if (Physics.Raycast (transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity)) {
+						if (hit.collider.gameObject == player) {
+							GameObject bullet = Instantiate (bulletTemplate, transform.position, Quaternion.identity) as GameObject;
+							bullet.GetComponent<Rigidbody> ().AddForce ((player.transform.position - transform.position).normalized * 50, ForceMode.VelocityChange);
+							weaponAS.Play ();
+						}
 					}
 				}
 			}
+
 			yield return new WaitForSeconds (1.5f + Random.Range(0.1f, 0.5f));
 		}
 	}
