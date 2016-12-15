@@ -4,6 +4,7 @@ using UnityStandardAssets.ImageEffects;
 using Kino;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
 using FMOD;
@@ -25,6 +26,7 @@ public class Player_Script : MonoBehaviour {
 	private bool boostActive;
 
 	public GameObject[] allEnemies;
+	public List<GameObject> enemyList;
 	private int totalEnemies, remainingEnemies;
 
 	private bool playerHasControl;
@@ -77,7 +79,9 @@ public class Player_Script : MonoBehaviour {
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
-	public StudioEventEmitter fmodMovementEmitter, fmodMusicEmitter;
+	public StudioEventEmitter fmodMovementEmitter;
+
+	public EventInstance musicEvent;
 
 	[EventRef]
 	public string l1, l2, l3, l4;
@@ -133,10 +137,14 @@ public class Player_Script : MonoBehaviour {
 		sSawButton.onClick.AddListener (() => ChooseSecondary (weaponTypes.SAW));
 
 		resButton.onClick.AddListener (() => ToggleMenu (false));
-		mainButton.onClick.AddListener (() => SceneManager.LoadScene ("menutest"));
+		mainButton.onClick.AddListener (() => LoadMenu());
 		quitButton.onClick.AddListener (() => Application.Quit ());
 	}
 
+	void LoadMenu () {
+		musicEvent.stop (STOP_MODE.ALLOWFADEOUT);
+		SceneManager.LoadScene ("menutest");
+	}
 	// Use this for initialization
 	void Start () {
 //		mb = Camera.main.GetComponent<MotionBlur> ();
@@ -146,39 +154,11 @@ public class Player_Script : MonoBehaviour {
 		health = 100;
 		shield = 100;
 		allEnemies = DetectEnemies ();
+		enemyList.AddRange (allEnemies);
 		Invoke ("ConstructEnemyCounter", 0.5f);
-
+		SetupMusic ();
 		DamagePlayer (0);
-//		musicAS = GetComponent<AudioSource> ();
-//		switch (SceneManager.GetActiveScene().name)
-//		{
-//		case "menutest":
-//			musicAS.clip = menuAC;
-//			break;
-//		case "Level 1 Jamo":
-//			musicAS.clip = L1AC;
-//			break;
-//		case "Eugene Level 2 Testing":
-//			musicAS.clip = L2AC;
-//			break;
-//		case "Level 3":
-//			musicAS.clip = L3AC;
-//			break;
-//		case "Level 4 Boss":
-//			musicAS.clip = L4AC;
-//			break;
-//		}
-//
-//		musicAS.Play ();
-	
-//		print ("rightGat: " + rightGatAnim.avatar.isValid);
-//		print ("leftGat: " + leftGatAnim.avatar.isValid);
-//		print ("rightRail: " + rightRailAnim.avatar.isValid);
-//		print ("leftRail: " + leftRailAnim.avatar.isValid);
-//		print ("rightShot: " + rightShotAnim.avatar.isValid);
-//		print ("leftShot: " + leftShotAnim.avatar.isValid);
-//		print ("rightDrill: " + rightSawAnim.avatar.isValid);
-//		print ("leftDrill: " + leftSawAnim.avatar.isValid);
+		DetectEnemies ();
 
 	}
 	
@@ -206,47 +186,62 @@ public class Player_Script : MonoBehaviour {
 //			fmodMusicEmitter.Event()
 			break;
 		case "Level 1 Jamo":
-			fmodMusicEmitter.Event = l1;
+//			fmodMusicEmitter.Event = l1;
+			musicEvent = FMODUnity.RuntimeManager.CreateInstance (l1);
 			break;
 		case "Eugene Level 2 Testing":
-			fmodMusicEmitter.Event = l2;
+//			fmodMusicEmitter.Event = l2;
+			musicEvent = FMODUnity.RuntimeManager.CreateInstance (l2);
 			break;
 		case "Level 3":
-			fmodMusicEmitter.Event = l3;
+//			fmodMusicEmitter.Event = l3;
+			musicEvent = FMODUnity.RuntimeManager.CreateInstance (l3);
 			break;
 		case "Level 4 Boss":
-			fmodMusicEmitter.Event = l4;
+//			fmodMusicEmitter.Event = l4;
+			musicEvent = FMODUnity.RuntimeManager.CreateInstance (l4);
 			break;
 		}
+		musicEvent.start ();
+		musicEvent.setVolume (0.5f);
 
-		fmodMusicEmitter.Play ();
+//		fmodMusicEmitter.Play ();
+
 	}
 
 	void UpdateMusic () {
-
-		int enemiesKilled = totalEnemies - remainingEnemies;
-		int cPara = 1;
-		if (enemiesKilled != 0) {
-			cPara = enemiesKilled / totalEnemies;
-		} else {
+		
+		float enemiesKilled = allEnemies.Length - enemyList.Count;
+		float cPara = 1;
+		if (enemiesKilled == 0) {
 			cPara = 1;
+		} else {
+			cPara = (enemiesKilled / totalEnemies) * 100;
 		}
+		print ("Cpara :" + cPara + " | EnemiesKilled: " + enemiesKilled);
 
 		switch (SceneManager.GetActiveScene().name)
 		{
 		case "Level 1 Jamo":
-			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+//			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			musicEvent.setParameterValue ("Intensity", cPara);
 			break;
 		case "Eugene Level 2 Testing":
-			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+//			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			musicEvent.setParameterValue ("Intensity", cPara);
 			break;
 		case "Level 3":
-			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+//			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			musicEvent.setParameterValue ("Intensity", cPara);
 			break;
 		case "Level 4 Boss":
 			
 			break;
 		}
+		float f;
+		musicEvent.getParameterValue ("Intensity", out f);
+		print ("Intensity: " + f);
+//		print ("param" + fmodMusicEmitter.Params [1].Value);
 	}
 
 	void OnEnable () {
@@ -279,12 +274,10 @@ public class Player_Script : MonoBehaviour {
 
 
 	private GameObject[] DetectEnemies () {
-		GameObject [] towers = GameObject.FindGameObjectsWithTag ("Tower");
 		GameObject [] swarms = GameObject.FindGameObjectsWithTag ("Swarm");
 		GameObject[] elites = GameObject.FindGameObjectsWithTag ("Elite");
-		GameObject[] towersAndSwarms = towers.Concat (swarms).ToArray();
-		GameObject[] combinedEnemies = towersAndSwarms.Concat (elites).ToArray ();
-		return combinedEnemies;
+		GameObject[] swarmssAndElites = swarms.Concat (elites).ToArray();
+		return swarmssAndElites;
 	}
 	#endregion
 
@@ -407,14 +400,6 @@ public class Player_Script : MonoBehaviour {
 
 		if (secondaryTimer > 0){
 			secondaryTimer -= Time.deltaTime;
-		}
-
-		if (Input.GetKeyDown(KeyCode.F2)) {
-			SceneManager.LoadScene (1);
-		}
-
-		if (Input.GetKeyDown(KeyCode.F3)) {
-			SceneManager.LoadScene (2);
 		}
 	}
 

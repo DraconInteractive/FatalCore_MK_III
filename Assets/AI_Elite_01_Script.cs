@@ -143,6 +143,7 @@ public class AI_Elite_01_Script : MonoBehaviour {
 
 		if (currentHealth < 0) {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
+			player.GetComponent<Player_Script> ().enemyList.Remove (this.gameObject);
 			if (!dead) {
 				dead = true;
 //				GameObject g = Instantiate (deathElite, transform.position, transform.rotation) as GameObject;

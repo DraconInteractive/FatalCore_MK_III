@@ -165,6 +165,7 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 		if (currentHealth < 0) {
 			player.GetComponent<Player_Script> ().UpdateEnemyCounter ();
+			player.GetComponent<Player_Script> ().enemyList.Remove (this.gameObject);
 			if (!dead) {
 				print ("Wasp Dead");
 				dead = true;
