@@ -178,7 +178,7 @@ public class Player_Script : MonoBehaviour {
 			CameraRotation ();
 		}
 	}
-
+		
 	void SetupMusic () {
 		switch (SceneManager.GetActiveScene().name)
 		{
@@ -939,6 +939,20 @@ public class Player_Script : MonoBehaviour {
 		yield return new WaitForSeconds (1.0f);
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		dg.intensity = 0;
+		yield break;
+	}
+
+	IEnumerator CoreDeath () {
+		dadAS.clip = deathClip;
+		dadAS.Play ();
+		while (dg.intensity < 1) {
+			dg.intensity += 0.5f * Time.deltaTime;
+			yield return null;
+		}
+
+		yield return new WaitForSeconds (1.0f);
+		dg.intensity = 0;
+		SceneManager.LoadScene ("menutest");
 		yield break;
 	}
 	#endregion
