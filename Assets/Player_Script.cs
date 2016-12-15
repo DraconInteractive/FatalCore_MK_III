@@ -25,7 +25,7 @@ public class Player_Script : MonoBehaviour {
 	private bool boostActive;
 
 	public GameObject[] allEnemies;
-	private int totalEnemies;
+	private int totalEnemies, remainingEnemies;
 
 	private bool playerHasControl;
 
@@ -77,7 +77,10 @@ public class Player_Script : MonoBehaviour {
 
 	public WeaponModification gatMod, railMod, shotMod, sawMod;
 
-	public StudioEventEmitter fmodMovementEmitter;
+	public StudioEventEmitter fmodMovementEmitter, fmodMusicEmitter;
+
+	[EventRef]
+	public string l1, l2, l3, l4;
 
 	public GatlingLaserScript gatLeftLaser, gatRightLaser;
 	public RailLaserScript railLeftLaser, railRightLaser;
@@ -88,8 +91,8 @@ public class Player_Script : MonoBehaviour {
 	public AudioClip deathClip;
 
 	public AudioSource pWAS, sWAS, dadAS;
-	private AudioSource musicAS;
-	public AudioClip L1AC, L2AC, L3AC, L4AC, menuAC;
+//	private AudioSource musicAS;
+//	public AudioClip L1AC, L2AC, L3AC, L4AC, menuAC;
 
 	void Awake () {
 		playerObj = this.gameObject;
@@ -146,29 +149,29 @@ public class Player_Script : MonoBehaviour {
 		Invoke ("ConstructEnemyCounter", 0.5f);
 
 		DamagePlayer (0);
-		musicAS = GetComponent<AudioSource> ();
-		switch (SceneManager.GetActiveScene().name)
-		{
-		case "menutest":
-			musicAS.clip = menuAC;
-			break;
-		case "Level 1 Jamo":
-			musicAS.clip = L1AC;
-			break;
-		case "Eugene Level 2 Testing":
-			musicAS.clip = L2AC;
-			break;
-		case "Level 3":
-			musicAS.clip = L3AC;
-			break;
-		case "Level 4 Boss":
-			musicAS.clip = L4AC;
-			break;
-		}
-
-		musicAS.Play ();
+//		musicAS = GetComponent<AudioSource> ();
+//		switch (SceneManager.GetActiveScene().name)
+//		{
+//		case "menutest":
+//			musicAS.clip = menuAC;
+//			break;
+//		case "Level 1 Jamo":
+//			musicAS.clip = L1AC;
+//			break;
+//		case "Eugene Level 2 Testing":
+//			musicAS.clip = L2AC;
+//			break;
+//		case "Level 3":
+//			musicAS.clip = L3AC;
+//			break;
+//		case "Level 4 Boss":
+//			musicAS.clip = L4AC;
+//			break;
+//		}
+//
+//		musicAS.Play ();
 	
-		//		print ("rightGat: " + rightGatAnim.avatar.isValid);
+//		print ("rightGat: " + rightGatAnim.avatar.isValid);
 //		print ("leftGat: " + leftGatAnim.avatar.isValid);
 //		print ("rightRail: " + rightRailAnim.avatar.isValid);
 //		print ("leftRail: " + leftRailAnim.avatar.isValid);
@@ -186,12 +189,63 @@ public class Player_Script : MonoBehaviour {
 		BoostUpdate();
 		HeatUpdate ();
 		MovementFMOD ();
+		UpdateMusic ();
 	}
 
 	void FixedUpdate () {
 		if (playerHasControl){
 			PlayerMovement();
 			CameraRotation ();
+		}
+	}
+
+	void SetupMusic () {
+		switch (SceneManager.GetActiveScene().name)
+		{
+		case "menutest":
+//			fmodMusicEmitter.Event()
+			break;
+		case "Level 1 Jamo":
+			fmodMusicEmitter.Event = l1;
+			break;
+		case "Eugene Level 2 Testing":
+			fmodMusicEmitter.Event = l2;
+			break;
+		case "Level 3":
+			fmodMusicEmitter.Event = l3;
+			break;
+		case "Level 4 Boss":
+			fmodMusicEmitter.Event = l4;
+			break;
+		}
+
+		fmodMusicEmitter.Play ();
+	}
+
+	void UpdateMusic () {
+
+		int enemiesKilled = totalEnemies - remainingEnemies;
+		int cPara = 1;
+		if (enemiesKilled != 0) {
+			cPara = enemiesKilled / totalEnemies;
+		} else {
+			cPara = 1;
+		}
+
+		switch (SceneManager.GetActiveScene().name)
+		{
+		case "Level 1 Jamo":
+			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			break;
+		case "Eugene Level 2 Testing":
+			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			break;
+		case "Level 3":
+			fmodMusicEmitter.SetParameter ("Intensity", cPara);
+			break;
+		case "Level 4 Boss":
+			
+			break;
 		}
 	}
 
@@ -208,10 +262,11 @@ public class Player_Script : MonoBehaviour {
 	}
 
 	public void UpdateEnemyCounter () {
-		enemyCounterText.text = "Enemies: " + "\n" + DetectEnemies ().Length + "/" + totalEnemies;
-		if (DetectEnemies ().Length <= 0) {
+		remainingEnemies = DetectEnemies ().Length;
+		enemyCounterText.text = "Enemies: " + "\n" + remainingEnemies + "/" + totalEnemies;
+		if (remainingEnemies <= 0) {
 			passCube.SetActive (false);
-		} else if (DetectEnemies ().Length <= 10 && DetectEnemies ().Length >= 0) {
+		} else if (remainingEnemies <= 10 && remainingEnemies >= 0) {
 //			LightEmUp ();
 		}
 	}
@@ -717,19 +772,18 @@ public class Player_Script : MonoBehaviour {
 
 	IEnumerator GatlingSoundFire (int gun) {
 		if (gun == 0) {
-			pWAS.clip = gatClip;
-			pWAS.Play ();
+			pWAS.PlayOneShot (gatClip);
 		} else {
 			sWAS.clip = gatClip;
 			sWAS.Play ();
 		}
 
 		yield return new WaitForSeconds (gatlingCool - 0.01f);
-		if (gun == 0) {
-			pWAS.Stop ();
-		} else {
-			sWAS.Stop ();
-		}
+//		if (gun == 0) {
+//			pWAS.Stop ();
+//		} else {
+//			sWAS.Stop ();
+//		}
 		yield break;
 	}
 

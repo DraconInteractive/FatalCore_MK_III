@@ -32,7 +32,7 @@ public class GatlingLaserScript : MonoBehaviour {
 
 		float t = 0;
 
-		while (t < 0.015f) {
+		while (t < 0.15f) {
 			ray = new Ray (transform.position, transform.forward);
 
 			line.SetPosition (0, ray.origin);
