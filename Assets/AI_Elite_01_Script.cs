@@ -35,7 +35,7 @@ public class AI_Elite_01_Script : MonoBehaviour {
 //	public string movementSound;
 //	FMOD.Studio.EventInstance movementEventRef;
 	void Awake () {
-//		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
+		anim = transform.GetChild (0).gameObject.GetComponent<Animator> ();
 		gab = anim.GetBehaviour<Golem_Attack_Behaviour> ();
 		print ("Gab retrieved: " + gab == null);
 		gab.elite = this.gameObject.GetComponent<AI_Elite_01_Script> ();;
