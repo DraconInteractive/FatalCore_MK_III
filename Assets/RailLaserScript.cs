@@ -30,7 +30,7 @@ public class RailLaserScript : MonoBehaviour {
 		Ray ray = new Ray (transform.position, transform.forward);
 
 		line.SetPosition (0, ray.origin);
-		line.SetPosition (1, ray.GetPoint (100));
+		line.SetPosition (1, ray.GetPoint (10000));
 
 		float t = 0;
 		bool hasHit = false;
@@ -38,10 +38,10 @@ public class RailLaserScript : MonoBehaviour {
 			ray = new Ray (transform.position, transform.forward);
 
 			line.SetPosition (0, ray.origin);
-			line.SetPosition (1, ray.GetPoint (100));
+			line.SetPosition (1, ray.GetPoint (10000));
 			RaycastHit hit;
 			if (!hasHit) {
-				if (Physics.Raycast(ray, out hit, 100)) {
+				if (Physics.Raycast(ray, out hit, 10000)) {
 					GameObject g = hit.collider.gameObject;
 					switch (g.tag) {
 					case "Swarm":
@@ -60,8 +60,12 @@ public class RailLaserScript : MonoBehaviour {
 						g.GetComponent<AI_Tower_Script> ().DamageAI (damage);
 						hasHit = true;
 						break;
-					case "BossPlate":
-						g.GetComponent<BOSS_Plate_Script>().Damage(damage);
+					case "BossCore":
+						g.GetComponent<Boss_Core_Script> ().DamageCore (damage);
+						hasHit = true;
+						break;
+					case "Shield":
+						g.GetComponent<Boss_Laser_Script> ().DamageAI (damage);
 						hasHit = true;
 						break;
 					}

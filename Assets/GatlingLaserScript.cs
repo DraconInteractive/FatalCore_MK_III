@@ -28,7 +28,7 @@ public class GatlingLaserScript : MonoBehaviour {
 		Ray ray = new Ray (transform.position, transform.forward);
 
 		line.SetPosition (0, ray.origin);
-		line.SetPosition (1, ray.GetPoint (100));
+		line.SetPosition (1, ray.GetPoint (1000));
 
 		float t = 0;
 
@@ -36,9 +36,9 @@ public class GatlingLaserScript : MonoBehaviour {
 			ray = new Ray (transform.position, transform.forward);
 
 			line.SetPosition (0, ray.origin);
-			line.SetPosition (1, ray.GetPoint (100));
+			line.SetPosition (1, ray.GetPoint (1000));
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 100)) {
+			if (Physics.Raycast(ray, out hit, 1000)) {
 				GameObject g = hit.collider.gameObject;
 				switch (g.tag) {
 				case "Swarm":
@@ -53,8 +53,11 @@ public class GatlingLaserScript : MonoBehaviour {
 				case "Tower":
 					g.GetComponent<AI_Tower_Script> ().DamageAI (damage);
 					break;
-				case "BossPlate":
-					g.GetComponent<BOSS_Plate_Script>().Damage(damage);
+				case "BossCore":
+					g.GetComponent<Boss_Core_Script>().DamageCore(damage);
+					break;
+				case "Shield":
+					g.GetComponent<Boss_Laser_Script> ().DamageAI (damage);
 					break;
 				}
 			}
