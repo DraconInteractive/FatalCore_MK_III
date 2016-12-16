@@ -5,6 +5,8 @@ public class Boss_Laser_Script : MonoBehaviour {
 	LineRenderer laser;
 	public int currentHealth, maxHealth;
 
+	public Material lasermat;
+
 	void Awake () {
 		laser = transform.GetChild (0).gameObject.GetComponent<LineRenderer>();
 	}
@@ -37,7 +39,31 @@ public class Boss_Laser_Script : MonoBehaviour {
 	public void DamageAI (int damage) {
 		currentHealth -= damage;
 		if (currentHealth <= 0) {
-			Destroy (this.gameObject);
+			StartCoroutine (ShieldDeath ());
 		}
+	}
+
+	IEnumerator ShieldDeath () {
+		Renderer r = GetComponent<Renderer> ();
+		r.material = lasermat;
+
+		float a = 1;
+
+		while (a > 0) {
+			
+			Color colorRef = r.material.color;
+			colorRef.a -= Time.deltaTime;
+			colorRef.a = Mathf.Clamp (colorRef.a, 0.0f, 1.0f);
+			r.material.color = colorRef;
+
+			a -= Time.deltaTime;
+			yield return null;
+		}
+		Invoke ("Death", 1);
+		yield break;
+	}
+
+	void Death () {
+		Destroy (this.gameObject);
 	}
 }
