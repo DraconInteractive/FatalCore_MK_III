@@ -170,6 +170,10 @@ public class Player_Script : MonoBehaviour {
 		HeatUpdate ();
 		MovementFMOD ();
 		UpdateMusic ();
+		if (shield < 100) {
+			shield += 1 * Time.deltaTime;
+			shieldSlider.value = shield;
+		}
 	}
 
 	void FixedUpdate () {
@@ -918,7 +922,7 @@ public class Player_Script : MonoBehaviour {
 	}
 	IEnumerator PlayerDamageEffect () {
 		effectActive = true;
-		print ("DEActive");
+//		print ("DEActive");
 		ag.colorDrift += 0.25f;
 		ag.scanLineJitter += 0.5f;
 		yield return new WaitForSeconds (0.25f);

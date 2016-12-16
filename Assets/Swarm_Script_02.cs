@@ -43,20 +43,22 @@ public class Swarm_Script_02 : MonoBehaviour {
 	public GameObject deadSwarm;
 
 	public AudioSource weaponAS, movementAS, deathAS;
+
+	public Renderer[] childRenderers;
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
-
-	void OnDrawGizmos () {
-		if (drawRadii){
-			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere (transform.position, swarmSightRadius);
-			Gizmos.color = Color.green;
-			Gizmos.DrawWireSphere (transform.position, playerSightRadius);
-			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere (transform.position, fireRadius);
-		}
-	}
+//
+//	void OnDrawGizmos () {
+//		if (drawRadii){
+//			Gizmos.color = Color.red;
+//			Gizmos.DrawWireSphere (transform.position, swarmSightRadius);
+//			Gizmos.color = Color.green;
+//			Gizmos.DrawWireSphere (transform.position, playerSightRadius);
+//			Gizmos.color = Color.blue;
+//			Gizmos.DrawWireSphere (transform.position, fireRadius);
+//		}
+//	}
 	// Use this for initialization
 	void Start () {
 //		player = Player_Script.playerObj;
@@ -68,16 +70,11 @@ public class Swarm_Script_02 : MonoBehaviour {
 
 		StartCoroutine (DoSwarm ());
 		StartCoroutine (FireUpdate ());
+
+//		childRenderers = GetComponentsInChildren<Renderer> ();
 	}
 
 
-		
-	
-	
-	// Update is called once per frame
-//	void Update () {
-//	
-//	}
 
 	void DoSeperateAndCohesion () {
 		Vector3 swarmDirection = Vector3.zero;
@@ -159,8 +156,28 @@ public class Swarm_Script_02 : MonoBehaviour {
 		}
 	}
 
+	IEnumerator OnHit () {
+		print ("Swarm Children" + childRenderers.Length);
+		Color c = Color.red;
+//		Color[] cs = new Color[childRenderers.Length];
+		Color[] s = new Color[childRenderers.Length];
+
+		for (int i = 0; i > childRenderers.Length; i++) {
+			s [i] = childRenderers [i].material.color;
+			childRenderers [i].material.color = Color.red;
+		}
+		print ("Swarm color: " + s.Length);
+		yield return new WaitForSeconds (0.25f);
+		for (int i = 0; i > childRenderers.Length; i++) {
+			childRenderers [i].material.color = s[i];
+		}
+		yield break;
+	}
+
 	public void DamageAI (int damage) {
 
+		StartCoroutine (OnHit ());
+		print ("hit swarm");
 		currentHealth -= damage;
 
 		if (currentHealth < 0) {

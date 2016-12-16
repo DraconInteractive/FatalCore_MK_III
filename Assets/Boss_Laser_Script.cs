@@ -27,6 +27,10 @@ public class Boss_Laser_Script : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
 			laser.SetPosition (1, hit.point);
+
+			if (hit.collider.tag == "Player") {
+				hit.collider.gameObject.GetComponent<Player_Script> ().DamagePlayer (10);
+			}
 		}
 	}
 
